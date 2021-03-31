@@ -9,7 +9,7 @@ abstract class BaseStatelessScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: this.buildAppBar(context),
-      body: this.buildBody(context),
+      body: SafeArea(child: this.buildBody(context)),
     );
   }
 

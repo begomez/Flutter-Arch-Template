@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/presentation/navigation/AppNavigator.dart';
 import 'package:flutter_template/presentation/screens/base/BaseStatelessScreen.dart';
+import 'package:flutter_template/presentation/utils/AppLocalizations.dart';
 import 'package:flutter_template/presentation/widgets/factory/WidgetFactory.dart';
 
 class LoginScreen extends BaseStatelessScreen {
@@ -12,9 +13,13 @@ class LoginScreen extends BaseStatelessScreen {
     return Container(
       child: Column(
         mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: [this._buildBtn(context)],
+        children: [
+          Center(
+              child: Text(AppLocalizations.of(context).translate("app_name"))),
+          this._buildBtn(context)
+        ],
       ),
     );
   }

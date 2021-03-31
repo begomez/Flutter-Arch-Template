@@ -19,7 +19,8 @@ class MainApp extends StatelessWidget {
         home: SplashScren(
           title: "",
         ),
-        supportedLocales: [],
+        supportedLocales:
+            LangCodes.values.map((LangCodes e) => Locale(e.toCode())).toList(),
         localizationsDelegates: [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,

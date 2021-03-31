@@ -9,6 +9,12 @@ import 'package:flutter_template/presentation/utils/AppLogger.dart';
  */
 enum LangCodes { EN, ES }
 
+extension LangCodesExtension on LangCodes {
+  String toCode() {
+    return this.toString().replaceAll("LangCodes.", "").toLowerCase();
+  }
+}
+
 /**
  * 
  */
@@ -16,14 +22,12 @@ class AppLocalizations {
   final String DIR = "i18n/";
   final String EXTENSION = ".json";
 
-  final Locale locale;
-  static AppLocalizationsDelegate delegate;
+  static final AppLocalizationsDelegate delegate = AppLocalizationsDelegate();
+
+  Locale locale;
   Map<String, String> translations;
 
-  AppLocalizations(
-      {this.locale,
-      this.delegate = const AppLocalizationsDelegate(),
-      this.translations = const {}});
+  AppLocalizations({this.locale, this.translations = const {}});
 
   static AppLocalizations of(BuildContext cntxt) =>
       Localizations.of<AppLocalizations>(cntxt, AppLocalizations);
@@ -57,8 +61,10 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const AppLocalizationsDelegate();
 
   @override
-  bool isSupported(Locale locale) =>
-      LangCodes.values.contains(locale.languageCode.toUpperCase());
+  bool isSupported(Locale locale) => LangCodes.values
+      .map((e) => e.toCode())
+      .toList()
+      .contains(locale.languageCode);
 
   @override
   Future<AppLocalizations> load(Locale locale) async {

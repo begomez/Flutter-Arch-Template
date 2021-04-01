@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_template/presentation/navigation/Routes.dart';
+import 'package:flutter_template/presentation/resources/AppStyles.dart';
 import 'package:flutter_template/presentation/screens/HomeScreen.dart';
 import 'package:flutter_template/presentation/screens/LoginScreen.dart';
 import 'package:flutter_template/presentation/screens/SplashScreen.dart';
@@ -16,6 +17,7 @@ class MainApp extends StatelessWidget {
         showPerformanceOverlay: false,
         debugShowCheckedModeBanner: false,
         title: "MainApp",
+        theme: AppStyles.appTheme,
         home: SplashScren(
           title: "",
         ),

@@ -6,7 +6,7 @@ class HomeScreen extends BaseStatelessScreen {
       : super(title: title, key: key);
 
   @override
-  Widget buildBody(BuildContext context) {
+  Widget buildScreenContent(BuildContext context) {
     return Center(
         child: Container(
       child: Text(this.getScreenTitle()),

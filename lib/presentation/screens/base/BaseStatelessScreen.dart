@@ -9,7 +9,7 @@ abstract class BaseStatelessScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: this.buildAppBar(context),
-      body: SafeArea(child: this.buildBody(context)),
+      body: SafeArea(child: this.buildScreenContent(context)),
     );
   }
 
@@ -24,7 +24,7 @@ abstract class BaseStatelessScreen extends StatelessWidget {
   }
 
   //XXX: must be overriden by subclasses
-  Widget buildBody(BuildContext cntxt);
+  Widget buildScreenContent(BuildContext cntxt);
 
   String getScreenTitle() => this.title;
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/presentation/navigation/AppNavigator.dart';
+import 'package:flutter_template/presentation/resources/AppColors.dart';
+import 'package:flutter_template/presentation/resources/AppStyles.dart';
 import 'package:flutter_template/presentation/screens/base/BaseStatelessScreen.dart';
 import 'package:flutter_template/presentation/utils/AppLocalizations.dart';
 import 'package:flutter_template/presentation/widgets/factory/WidgetFactory.dart';
@@ -9,7 +11,7 @@ class LoginScreen extends BaseStatelessScreen {
       : super(title: title, key: key);
 
   @override
-  Widget buildBody(BuildContext context) {
+  Widget buildScreenContent(BuildContext context) {
     return Container(
       child: Column(
         mainAxisSize: MainAxisSize.max,
@@ -26,7 +28,8 @@ class LoginScreen extends BaseStatelessScreen {
 
   Widget _buildBtn(BuildContext cntxt) {
     return WidgetFactory.buildBtn(
-        color: Colors.red,
+        color: AppColors.accent,
+        style: AppStyles.action,
         text: "Login",
         callback: () async {
           await AppNavigator.toHome(cntxt);

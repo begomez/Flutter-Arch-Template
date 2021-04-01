@@ -8,10 +8,13 @@ class SplashScren extends BaseStatelessScreen {
       : super(title: title, key: key);
 
   @override
-  Widget buildBody(BuildContext context) {
+  Widget buildScreenContent(BuildContext context) {
     this._navigateDelayed(context);
 
-    return Center(child: Container());
+    return Center(
+        child: Container(
+      child: Image.asset("assets/images/splash.png"),
+    ));
   }
 
   void _navigateDelayed(BuildContext cntxt) async {

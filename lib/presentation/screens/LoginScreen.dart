@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/presentation/navigation/AppNavigator.dart';
-import 'package:flutter_template/presentation/resources/AppColors.dart';
-import 'package:flutter_template/presentation/resources/AppStyles.dart';
+
 import 'package:flutter_template/presentation/screens/base/BaseStatelessScreen.dart';
 import 'package:flutter_template/presentation/utils/AppLocalizations.dart';
-import 'package:flutter_template/presentation/widgets/factory/WidgetFactory.dart';
+import 'package:flutter_template/presentation/widgets/LoginButtonWidget.dart';
 
 class LoginScreen extends BaseStatelessScreen {
   const LoginScreen({String title = "", Key key})
@@ -20,19 +18,9 @@ class LoginScreen extends BaseStatelessScreen {
         children: [
           Center(
               child: Text(AppLocalizations.of(context).translate("app_name"))),
-          this._buildBtn(context)
+          LoginButtonWidget()
         ],
       ),
     );
-  }
-
-  Widget _buildBtn(BuildContext cntxt) {
-    return WidgetFactory.buildBtn(
-        color: AppColors.accent,
-        style: AppStyles.action,
-        text: "Login",
-        callback: () async {
-          await AppNavigator.toHome(cntxt);
-        });
   }
 }

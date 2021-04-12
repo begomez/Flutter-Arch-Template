@@ -5,9 +5,9 @@ enum ResourceState { INITIAL, LOADING, SUCCESS, ERROR }
 class ResourceResult<T> {
   final T data;
   final ErrorModel error;
-  final ResourceState state;
+  ResourceState state;
 
-  const ResourceResult(
+  ResourceResult(
       {this.data = null,
       this.error = null,
       this.state = ResourceState.INITIAL});
@@ -25,4 +25,6 @@ class ResourceResult<T> {
   bool isSuccess() => this._isSomeState(ResourceState.SUCCESS);
 
   bool _isSomeState(ResourceState target) => this.state == target;
+
+  void setState(ResourceState state) => this.state = state;
 }

@@ -31,7 +31,12 @@ abstract class BaseBloc<Params extends BaseDTO, Data extends BaseModel> {
     }
   }
 
-  ResourceResult<Data> buildResult(
-          {Data data = null, ErrorModel error = null}) =>
-      ResourceResult(data: data, error: error);
+  ResourceResult<Data> buildResult({Data data = null, int errorCode = -1}) {
+    ResourceResult<Data> res = ResourceResult(
+        data: data, error: errorCode > 0 ? ErrorModel(code: errorCode) : null);
+
+    res.state = res.hasData() ? ResourceState.SUCCESS : ResourceState.ERROR;
+
+    return res;
+  }
 }

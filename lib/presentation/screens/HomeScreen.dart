@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/presentation/screens/base/BaseStatelessScreen.dart';
+import 'package:flutter_template/presentation/widgets/factory/WidgetFactory.dart';
 
 class HomeScreen extends BaseStatelessScreen {
   const HomeScreen({String title = "", Key key})
@@ -7,10 +8,17 @@ class HomeScreen extends BaseStatelessScreen {
 
   @override
   Widget buildScreenContent(BuildContext context) {
-    return Center(
-        child: Container(
-      child: Text(this.getScreenTitle()),
-    ));
+    return WillPopScope(
+      onWillPop: () async {
+        WidgetFactory.buildDialog(context);
+
+        return true;
+      },
+      child: Center(
+          child: Container(
+        child: Text(this.getScreenTitle()),
+      )),
+    );
   }
 
   @override

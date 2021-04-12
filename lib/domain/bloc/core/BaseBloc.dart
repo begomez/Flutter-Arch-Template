@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:flutter_template/common/models/BaseModel.dart';
 import 'package:flutter_template/common/models/ErrorModel.dart';
 import 'package:flutter_template/common/models/ResourceResult.dart';
-import 'package:flutter_template/domain/dto/BaseDTO.dart';
+import 'package:flutter_template/domain/dto/core/BaseDTO.dart';
 
 abstract class BaseBloc<Params extends BaseDTO, Data extends BaseModel> {
   StreamController<ResourceResult<Data>> _controller =

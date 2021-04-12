@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/domain/bloc/BaseBloc.dart';
+import 'package:flutter_template/domain/bloc/core/BaseBloc.dart';
 
 /**
  * 

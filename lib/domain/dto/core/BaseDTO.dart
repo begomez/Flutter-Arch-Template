@@ -1,0 +1,3 @@
+class BaseDTO {
+  const BaseDTO();
+}

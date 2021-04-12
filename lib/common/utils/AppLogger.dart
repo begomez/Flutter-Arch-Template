@@ -7,5 +7,8 @@ abstract class AppLogger {
 
   static void e({String tag = TAG, String msg = "", Exception error}) {
     print("$tag $msg");
+    if (error != null) {
+      print(error.toString());
+    }
   }
 }

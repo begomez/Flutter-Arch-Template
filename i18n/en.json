@@ -2,6 +2,7 @@
     "app_name" : "Sample application...",
 
     "screen_home" : "Home",
+    "screen_error" : "Error",
 
     "action_login" : "Login",
     "action_yes" : "Yes",

@@ -9,17 +9,20 @@ import 'package:flutter_template/presentation/navigation/AppNavigator.dart';
 import 'package:flutter_template/presentation/resources/AppColors.dart';
 import 'package:flutter_template/presentation/resources/AppStyles.dart';
 import 'package:flutter_template/presentation/utils/AppLocalizations.dart';
-import 'package:flutter_template/presentation/widgets/convenient/LoadingWidget.dart';
+import 'package:flutter_template/presentation/widgets/base/BaseStatefulWidget.dart';
+import 'package:flutter_template/presentation/widgets/convenient/AppErrorWidget.dart';
+import 'package:flutter_template/presentation/widgets/convenient/AppLoadingWidget.dart';
 import 'package:flutter_template/presentation/widgets/factory/WidgetFactory.dart';
 
-class LoginButtonWidget extends StatefulWidget {
+class LoginButtonWidget extends BaseStatefulWidget {
   const LoginButtonWidget({Key key}) : super(key: key);
 
   @override
   _LoginButtonWidgetState createState() => _LoginButtonWidgetState();
 }
 
-class _LoginButtonWidgetState extends State<LoginButtonWidget> {
+class _LoginButtonWidgetState
+    extends BaseStatefulWidgetState<LoginButtonWidget> {
   final _bloc = LoginBloc(FakeLoginApiImpl());
 
   _LoginButtonWidgetState() : super();
@@ -58,11 +61,11 @@ class _LoginButtonWidgetState extends State<LoginButtonWidget> {
   }
 
   Widget buildLoading(BuildContext cntxt) => Stack(
-        children: [this._buildBtn(cntxt), LoadingWidget()],
+        children: [this._buildBtn(cntxt), AppLoadingWidget()],
       );
 
   Widget buildError(BuildContext cntxt) {
-    //TODO
+    return AppErrorWidget();
   }
 
   Widget buildInitial(BuildContext cntxt) => this._buildBtn(cntxt);

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/presentation/widgets/base/BaseStatelessWidget.dart';
 
-class ErrorWidget extends BaseStatelessWidget {
-  const ErrorWidget({Key key}) : super(key: key);
+class AppErrorWidget extends BaseStatelessWidget {
+  const AppErrorWidget({Key key}) : super(key: key);
 
   @override
   Widget buildWidgetContent(BuildContext context) {

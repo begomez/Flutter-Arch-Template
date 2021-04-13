@@ -1,5 +1,7 @@
 {
-    "app_name" : "Aplicación...",
+    "app_name" : "Aplicación ejemplo...",
+
+    "screen_home" : "Inicio",
 
     "action_login" : "Acceder",
     "action_yes" : "Sí",

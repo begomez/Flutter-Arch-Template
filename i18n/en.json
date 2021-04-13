@@ -1,5 +1,7 @@
 {
-    "app_name" : "Some Application...",
+    "app_name" : "Sample application...",
+
+    "screen_home" : "Home",
 
     "action_login" : "Login",
     "action_yes" : "Yes",

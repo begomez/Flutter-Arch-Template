@@ -16,8 +16,8 @@ abstract class BaseStatefulScreen extends StatefulWidget {
 /**
  * 
  */
-abstract class BaseStatefulScreenState extends State<BaseStatefulScreen>
-    with ScreenMixin {
+abstract class BaseStatefulScreenState<T extends BaseStatefulScreen>
+    extends State<BaseStatefulScreen> with ScreenMixin {
   BaseStatefulScreenState() : super();
 
   @override
@@ -30,14 +30,4 @@ abstract class BaseStatefulScreenState extends State<BaseStatefulScreen>
    */
   //XXX: can be overriden by subclasses
   String getScreenTitle(BuildContext cntxt) => this.widget.title;
-
-  /**
-   * Refresh screen state
-   */
-  //XXX: can be overriden by subclasses
-  void refresh({Function action}) {
-    this.setState(() {
-      action?.call();
-    });
-  }
 }

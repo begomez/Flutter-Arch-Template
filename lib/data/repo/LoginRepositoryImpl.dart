@@ -10,7 +10,7 @@ const String TAG = "LoginRepositoryImpl";
 class LoginRepositoryImpl extends ILoginRepository {
   final ILoginApi api;
 
-  const LoginRepositoryImpl({@required this.api});
+  const LoginRepositoryImpl({@required this.api}) : assert(api != null);
 
   @override
   Future<UserSessionModel> login({String user, String pass}) async {

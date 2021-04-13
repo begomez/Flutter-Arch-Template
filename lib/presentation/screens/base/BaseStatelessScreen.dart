@@ -16,7 +16,7 @@ abstract class BaseStatelessScreen extends StatelessWidget with ScreenMixin {
 
   /**
    * Returns title displayed in app bar, return "" to hide bar
+   * Can be overriden by subclasses
    */
-  //XXX: can be overriden by subclasses
   String getScreenTitle(BuildContext cntxt) => this.title;
 }

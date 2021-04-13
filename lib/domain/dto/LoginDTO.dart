@@ -5,5 +5,8 @@ class LoginDTO extends BaseDTO {
   final String user;
   final String pass;
 
-  const LoginDTO({@required this.user, @required this.pass}) : super();
+  const LoginDTO({@required this.user, @required this.pass})
+      : assert(user != null),
+        assert(pass != null),
+        super();
 }

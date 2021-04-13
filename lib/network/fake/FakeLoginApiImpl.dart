@@ -3,6 +3,9 @@ import 'package:flutter_template/data/api/ILoginApi.dart';
 import 'package:flutter_template/network/response/LoginResponse.dart';
 import 'package:flutter_template/network/response/LogoutResponse.dart';
 
+/**
+ * Fake login API impl
+ */
 class FakeLoginApiImpl implements ILoginApi {
   final int DELAY_IN_SECS = 3;
 

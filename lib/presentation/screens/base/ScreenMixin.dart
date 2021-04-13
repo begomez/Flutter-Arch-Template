@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
-abstract class ScreenMixin {
+/**
+ * Mixin used to abstract screen layout
+ */
+mixin ScreenMixin {
   Widget buildScreen(BuildContext context) {
     return Scaffold(
       appBar: this.buildScreenAppBar(context),

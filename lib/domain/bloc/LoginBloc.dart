@@ -8,6 +8,9 @@ import 'package:flutter_template/domain/dto/LoginDTO.dart';
 import 'package:flutter_template/domain/repo/ILoginRepository.dart';
 import 'package:flutter_template/network/fake/FakeLoginApiImpl.dart';
 
+/**
+ * BLoC used to perform login operation
+ */
 class LoginBloc extends BaseBloc<LoginDTO, UserSessionModel> {
   ILoginRepository _repo;
 

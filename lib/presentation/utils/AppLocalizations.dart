@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_template/common/utils/AppLogger.dart';
 
 /**
- * 
+ * Admitted language codes for application
  */
 enum LangCodes { EN, ES }
 
@@ -16,7 +16,7 @@ extension LangCodesExtension on LangCodes {
 }
 
 /**
- * 
+ * Translations manager
  */
 class AppLocalizations {
   final String DIR = "i18n/";
@@ -55,7 +55,7 @@ class AppLocalizations {
 }
 
 /**
- * 
+ * Translations delegate
  */
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
   const AppLocalizationsDelegate();

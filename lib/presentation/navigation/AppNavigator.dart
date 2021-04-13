@@ -7,11 +7,11 @@ abstract class AppNavigator {
         .popUntil((route) => route.settings.name == Routes.login);
   }
 
-  static Future<void> toLogin(BuildContext cntxt) {
+  static Future<void> toLogin(BuildContext cntxt) async {
     return Navigator.of(cntxt).pushReplacementNamed(Routes.login);
   }
 
-  static Future<void> toHome(BuildContext cntxt) {
+  static Future<void> toHome(BuildContext cntxt) async {
     return Navigator.of(cntxt).pushReplacementNamed(Routes.home);
   }
 }

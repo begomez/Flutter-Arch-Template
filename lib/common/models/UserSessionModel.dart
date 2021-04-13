@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/common/models/BaseModel.dart';
+import 'package:flutter_template/common/models/core/BaseModel.dart';
 
 class UserSessionModel extends BaseModel {
   final String name;

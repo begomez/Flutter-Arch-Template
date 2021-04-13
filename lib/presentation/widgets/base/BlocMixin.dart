@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/common/models/BaseModel.dart';
-import 'package:flutter_template/common/models/ResourceResult.dart';
+import 'package:flutter_template/common/models/core/BaseModel.dart';
+import 'package:flutter_template/common/models/result/ResourceResult.dart';
 import 'package:flutter_template/domain/bloc/core/BaseBloc.dart';
 import 'package:flutter_template/domain/bloc/core/BlocProvider.dart';
 import 'package:flutter_template/domain/dto/core/BaseDTO.dart';
@@ -12,8 +12,8 @@ import 'package:flutter_template/domain/dto/core/BaseDTO.dart';
  * - TargetData: data model returned by previous bloc
  * - TargetDTO: params model used as previous bloc input
  */
-abstract class BlocMixin<TargetBloc extends BaseBloc,
-    TargetData extends BaseModel, TargetDTO extends BaseDTO> {
+mixin BlocMixin<TargetBloc extends BaseBloc, TargetData extends BaseModel,
+    TargetDTO extends BaseDTO> {
   TargetBloc bloc = null;
   bool autocall = false;
 

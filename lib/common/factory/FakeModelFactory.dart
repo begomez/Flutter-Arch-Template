@@ -3,9 +3,9 @@ import 'dart:math';
 import 'package:flutter_template/common/models/UserSessionModel.dart';
 
 abstract class FakeModelFactory {
-  static String _randomUserName() => "SparsityDev";
+  static String _randomUserName() => "Dev";
   static bool randomBool() => Random().nextBool();
-  static String _randomEmail() => "sparsity.dev@gmail.com";
+  static String _randomEmail() => "dev@gmail.com";
 
   static String _randomString({int len = 10}) {
     final rand = Random();

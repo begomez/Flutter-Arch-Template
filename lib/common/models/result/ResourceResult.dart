@@ -1,7 +1,13 @@
 import 'package:flutter_template/common/models/ErrorModel.dart';
 
+/**
+ * Enum with possible result states
+ */
 enum ResourceState { INITIAL, LOADING, SUCCESS, ERROR }
 
+/**
+ * Wrapper around a result (data or error)
+ */
 class ResourceResult<T> {
   final T data;
   final ErrorModel error;

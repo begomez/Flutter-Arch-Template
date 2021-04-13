@@ -10,6 +10,9 @@ import 'package:flutter_template/presentation/utils/AppLocalizations.dart';
 import 'package:flutter_template/presentation/widgets/base/BaseStatefulWidgetWithBloc.dart';
 import 'package:flutter_template/presentation/widgets/factory/WidgetFactory.dart';
 
+/**
+ * Widget that performs login using credentials
+ */
 class LoginButtonWidget extends BaseStatefulWidgetWithBloc<LoginBloc> {
   const LoginButtonWidget({Key key}) : super(key: key);
 

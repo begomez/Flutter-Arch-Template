@@ -1,4 +1,4 @@
-import 'package:flutter_template/common/models/BaseModel.dart';
+import 'package:flutter_template/common/models/core/BaseModel.dart';
 
 class BooleanWrapper extends BaseModel {
   final bool flag;

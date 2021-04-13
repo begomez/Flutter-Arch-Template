@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/domain/bloc/core/BaseBloc.dart';
 
 /**
- * 
+ * Class used to inject BLoC's across the widget tree
  */
 class BlocProvider<T extends BaseBloc> extends StatefulWidget {
   final Widget child;
@@ -23,7 +23,7 @@ class BlocProvider<T extends BaseBloc> extends StatefulWidget {
 }
 
 /**
- * 
+ * Companion state obj
  */
 class _BlocProviderState extends State<BlocProvider> {
   @override

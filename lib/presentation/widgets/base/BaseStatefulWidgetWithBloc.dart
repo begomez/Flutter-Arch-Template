@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/common/models/BaseModel.dart';
+import 'package:flutter_template/common/models/core/BaseModel.dart';
 import 'package:flutter_template/domain/bloc/core/BaseBloc.dart';
 import 'package:flutter_template/domain/dto/core/BaseDTO.dart';
 import 'package:flutter_template/presentation/widgets/base/BaseStatefulWidget.dart';

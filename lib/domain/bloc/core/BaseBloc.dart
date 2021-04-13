@@ -1,19 +1,26 @@
 import 'dart:async';
 
-import 'package:flutter_template/common/models/BaseModel.dart';
+import 'package:flutter_template/common/models/core/BaseModel.dart';
 import 'package:flutter_template/common/models/ErrorModel.dart';
-import 'package:flutter_template/common/models/ResourceResult.dart';
+import 'package:flutter_template/common/models/result/ResourceResult.dart';
 import 'package:flutter_template/data/exception/DataException.dart';
 import 'package:flutter_template/domain/ErrorCodes.dart';
 import 'package:flutter_template/domain/dto/core/BaseDTO.dart';
 
-abstract class BaseBloc<Params extends BaseDTO, Data extends BaseModel> {
-  StreamController<ResourceResult<Data>> _controller =
-      StreamController<ResourceResult<Data>>();
+/**
+ * Superclass for BLoC instances
+ * 
+ * Generic class receiving:
+ * - Params: model used as input
+ * - Output: model used as output
+ */
+abstract class BaseBloc<Params extends BaseDTO, Output extends BaseModel> {
+  StreamController<ResourceResult<Output>> _controller =
+      StreamController<ResourceResult<Output>>();
 
-  Stream<ResourceResult<Data>> get output => this._controller.stream;
+  Stream<ResourceResult<Output>> get output => this._controller.stream;
 
-  StreamSink<ResourceResult<Data>> get input => this._controller.sink;
+  StreamSink<ResourceResult<Output>> get input => this._controller.sink;
 
   BaseBloc();
 
@@ -32,7 +39,7 @@ abstract class BaseBloc<Params extends BaseDTO, Data extends BaseModel> {
     }
   }
 
-  Future<Data> fetchData(Params dto);
+  Future<Output> fetchData(Params dto);
 
   int getErrorCode() => ErrorCodes.INVALID;
 
@@ -50,10 +57,10 @@ abstract class BaseBloc<Params extends BaseDTO, Data extends BaseModel> {
     }
   }
 
-  ResourceResult<Data> buildResult(
-      {Data data = null, int errorCode = ErrorCodes.INVALID}) {
-    ResourceResult<Data> res = ResourceResult(
-        data: data, error: errorCode > 0 ? ErrorModel(code: errorCode) : null);
+  ResourceResult<Output> buildResult(
+      {Output data = null, int errorCode = ErrorCodes.INVALID}) {
+    ResourceResult<Output> res = ResourceResult(
+        data: data, error: errorCode >= 0 ? ErrorModel(code: errorCode) : null);
 
     res.state = res.hasData() ? ResourceState.SUCCESS : ResourceState.ERROR;
 

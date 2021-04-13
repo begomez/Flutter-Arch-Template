@@ -9,6 +9,9 @@ import 'package:flutter_template/domain/dto/core/BaseDTO.dart';
 import 'package:flutter_template/domain/dto/LogoutDTO.dart';
 import 'package:flutter_template/domain/repo/ILoginRepository.dart';
 
+/**
+ * BLoC used to perform logout operation
+ */
 class LogoutBloc extends BaseBloc<LogoutDTO, BooleanWrapper> {
   ILoginRepository repo;
 

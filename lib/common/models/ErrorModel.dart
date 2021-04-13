@@ -1,7 +1,8 @@
-import 'package:flutter_template/common/models/BaseModel.dart';
+import 'package:flutter_template/common/models/core/BaseModel.dart';
+import 'package:flutter_template/domain/ErrorCodes.dart';
 
 class ErrorModel extends BaseModel {
-  static const int NO_ERROR_CODE = -1;
+  static const int NO_ERROR_CODE = ErrorCodes.INVALID;
   static const String NO_DESCRIP = "";
 
   final int code;

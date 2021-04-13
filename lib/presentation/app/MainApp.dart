@@ -8,7 +8,7 @@ import 'package:flutter_template/presentation/screens/SplashScreen.dart';
 import 'package:flutter_template/presentation/utils/AppLocalizations.dart';
 
 /**
- * 
+ * Widget containing main app
  */
 class MainApp extends StatelessWidget {
   @override

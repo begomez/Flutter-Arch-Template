@@ -25,14 +25,14 @@ class MainApp extends StatelessWidget {
             LangCodes.values.map((LangCodes e) => Locale(e.toCode())).toList(),
         localizationsDelegates: [
           AppLocalizations.delegate,
-          GlobalMaterialLocalizations.delegate,
           GlobalWidgetsLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
         ],
         routes: {
           Routes.splash: (cntxt) => SplashScren(title: ""),
           Routes.login: (cntxt) => LoginScreen(title: ""),
-          Routes.home: (cntxt) => HomeScreen(title: "Home")
+          Routes.home: (cntxt) => HomeScreen(title: "")
         });
   }
 }

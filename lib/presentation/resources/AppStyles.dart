@@ -2,21 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/presentation/resources/AppColors.dart';
 
 abstract class AppStyles {
-  static TextStyle get _title => TextStyle(
+  static TextStyle get title => TextStyle(
         color: AppColors.textColor,
         fontSize: 16,
         fontStyle: FontStyle.normal,
         fontWeight: FontWeight.bold,
       );
 
-  static TextStyle get _subtitle => TextStyle(
+  static TextStyle get subtitle => TextStyle(
         color: AppColors.textColor,
         fontSize: 14,
         fontStyle: FontStyle.italic,
         fontWeight: FontWeight.normal,
       );
 
-  static TextStyle get _body => TextStyle(
+  static TextStyle get body => TextStyle(
         color: AppColors.textColor,
         fontSize: 11,
         fontStyle: FontStyle.normal,
@@ -31,7 +31,7 @@ abstract class AppStyles {
       );
 
   static TextTheme get appThemeText =>
-      TextTheme(headline6: _title, subtitle2: _subtitle, bodyText2: _body);
+      TextTheme(headline6: title, subtitle2: subtitle, bodyText2: body);
 
   static ThemeData get appTheme => ThemeData(
       primaryColor: AppColors.primary,

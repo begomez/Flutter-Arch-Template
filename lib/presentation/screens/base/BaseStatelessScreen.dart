@@ -1,30 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/presentation/screens/base/ScreenMixin.dart';
 
 /**
  * Base class for screens (main containers) with no state
  */
-abstract class BaseStatelessScreen extends StatelessWidget {
+abstract class BaseStatelessScreen extends StatelessWidget with ScreenMixin {
   final String title;
 
   const BaseStatelessScreen({this.title = "", Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: this.buildAppBar(context),
-      body: SafeArea(child: this.buildScreenContent(context)),
-    );
-  }
-
-  Widget buildAppBar(BuildContext cntxt) {
-    final title = this.getScreenTitle(cntxt);
-    if (title.isNotEmpty) {
-      return AppBar(
-        title: Text(title),
-      );
-    } else {
-      return null;
-    }
+    return this.buildScreen(context);
   }
 
   /**

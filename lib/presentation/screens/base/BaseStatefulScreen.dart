@@ -1,21 +1,43 @@
 import 'package:flutter/material.dart';
-
-//TODO: complete
+import 'package:flutter_template/presentation/screens/base/ScreenMixin.dart';
 
 /**
- * 
+ * Base class for screens (containers) with dynamic state 
  */
-class BaseStatefulScreen extends StatefulWidget {
+abstract class BaseStatefulScreen extends StatefulWidget {
+  final String title;
+
+  const BaseStatefulScreen({this.title = "", Key key}) : super(key: key);
+
   @override
-  _BaseStatefulScreenState createState() => _BaseStatefulScreenState();
+  BaseStatefulScreenState createState();
 }
 
 /**
  * 
  */
-class _BaseStatefulScreenState extends State<BaseStatefulScreen> {
+abstract class BaseStatefulScreenState extends State<BaseStatefulScreen>
+    with ScreenMixin {
+  BaseStatefulScreenState() : super();
+
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return this.buildScreen(context);
+  }
+
+  /**
+   * Returns title displayed in app bar, return "" to hide bar
+   */
+  //XXX: can be overriden by subclasses
+  String getScreenTitle(BuildContext cntxt) => this.widget.title;
+
+  /**
+   * Refresh screen state
+   */
+  //XXX: can be overriden by subclasses
+  void refresh({Function action}) {
+    this.setState(() {
+      action?.call();
+    });
   }
 }

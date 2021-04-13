@@ -4,7 +4,6 @@ import 'package:flutter_template/domain/dto/LogoutDTO.dart';
 import 'package:flutter_template/network/fake/FakeLoginApiImpl.dart';
 import 'package:flutter_template/presentation/navigation/AppNavigator.dart';
 import 'package:flutter_template/presentation/resources/AppColors.dart';
-import 'package:flutter_template/presentation/resources/AppStyles.dart';
 import 'package:flutter_template/presentation/utils/AppLocalizations.dart';
 
 abstract class WidgetFactory {

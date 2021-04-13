@@ -11,7 +11,7 @@ class HomeScreen extends BaseStatelessScreen {
       : super(title: title, key: key);
 
   @override
-  Widget buildScreenContent(BuildContext context) {
+  Widget buildScreenContents(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
         WidgetFactory.buildDialog(context);

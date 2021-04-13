@@ -7,24 +7,61 @@ import 'package:flutter_template/presentation/navigation/AppNavigator.dart';
 import 'package:flutter_template/presentation/resources/AppColors.dart';
 import 'package:flutter_template/presentation/resources/AppStyles.dart';
 import 'package:flutter_template/presentation/utils/AppLocalizations.dart';
-import 'package:flutter_template/presentation/widgets/base/BaseStatefulWidgetWithBloc.dart';
+import 'package:flutter_template/presentation/widgets/base/BaseStatefulWidget.dart';
+import 'package:flutter_template/presentation/widgets/base/BlocMixin.dart';
+import 'package:flutter_template/presentation/widgets/convenient/AppErrorWidget.dart';
+import 'package:flutter_template/presentation/widgets/convenient/AppLoadingWidget.dart';
 import 'package:flutter_template/presentation/widgets/factory/WidgetFactory.dart';
 
-class LoginButtonWidget extends BaseStatefulWidgetWithBloc<LoginBloc> {
+class LoginButtonWidget extends BaseStatefulWidget {
   const LoginButtonWidget({Key key}) : super(key: key);
 
   @override
   _LoginButtonWidgetState createState() => _LoginButtonWidgetState();
 }
 
-class _LoginButtonWidgetState extends BaseStatefulWidgetWithBlocState<LoginBloc,
-    UserSessionModel, LoginDTO> {
-  _LoginButtonWidgetState()
-      : super(autocall: false, bloc: LoginBloc(FakeLoginApiImpl()));
+class _LoginButtonWidgetState extends BaseStatefulWidgetState<LoginButtonWidget>
+    with BlocMixin<LoginBloc, UserSessionModel, LoginDTO> {
+  _LoginButtonWidgetState() : super();
+
+  @override
+  void initState() {
+    //this.initMixin(autocall: false, bloc: LoginBloc(FakeLoginApiImpl()));
+
+    super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    if (this.autocall) {
+      this.call();
+    }
+
+    super.didChangeDependencies();
+  }
+
+  @override
+  Widget buildWidgetContents(BuildContext context) {
+    if (this.hasBloc()) {
+      return this.buildWidgetAccordingToState(context);
+    } else {
+      return Container(child: Text("Init bloc on initState()"));
+    }
+  }
 
   @override
   LoginDTO getDTO() {
     return LoginDTO(user: "user", pass: "pass");
+  }
+
+  @override
+  Widget buildLoading(BuildContext cntxt) => Stack(
+        children: [this._buildBtn(cntxt), AppLoadingWidget()],
+      );
+
+  @override
+  Widget buildError(BuildContext cntxt) {
+    return AppErrorWidget();
   }
 
   @override

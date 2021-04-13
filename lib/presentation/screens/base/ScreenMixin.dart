@@ -4,7 +4,7 @@ abstract class ScreenMixin {
   Widget buildScreen(BuildContext context) {
     return Scaffold(
       appBar: this.buildScreenAppBar(context),
-      body: SafeArea(child: this.buildScreenContent(context)),
+      body: SafeArea(child: this.buildScreenContents(context)),
     );
   }
 
@@ -12,7 +12,7 @@ abstract class ScreenMixin {
    * Builds a widget representing main content of the screen
    */
   //XXX: must be overriden by subclasses
-  Widget buildScreenContent(BuildContext cntxt);
+  Widget buildScreenContents(BuildContext cntxt);
 
   /**
    * Returns app bar displayed on screen

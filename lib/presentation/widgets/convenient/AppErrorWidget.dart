@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/presentation/utils/AppLocalizations.dart';
 import 'package:flutter_template/presentation/widgets/base/BaseStatelessWidget.dart';
 
 class AppErrorWidget extends BaseStatelessWidget {
   const AppErrorWidget({Key key}) : super(key: key);
 
   @override
-  Widget buildWidgetContent(BuildContext context) {
+  Widget buildWidgetContents(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      child: Text("Error"),
+      child: Text(AppLocalizations.of(context).translate("screen_error")),
     );
   }
 }

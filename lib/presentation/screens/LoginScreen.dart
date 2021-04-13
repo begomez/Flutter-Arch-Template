@@ -13,7 +13,7 @@ class LoginScreen extends BaseStatelessScreen {
       : super(title: title, key: key);
 
   @override
-  Widget buildScreenContent(BuildContext context) {
+  Widget buildScreenContents(BuildContext context) {
     return Container(
       child: Column(
         mainAxisSize: MainAxisSize.max,

@@ -12,7 +12,7 @@ class _StatefulSample1State extends BaseStatefulScreenState<StatefulSample1> {
   Color _backColor = Colors.red;
 
   @override
-  Widget buildScreenContent(BuildContext cntxt) {
+  Widget buildScreenContents(BuildContext cntxt) {
     return Container(
         width: double.maxFinite,
         color: this._backColor,

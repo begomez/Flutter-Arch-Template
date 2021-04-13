@@ -6,7 +6,7 @@ class AppLoadingWidget extends BaseStatelessWidget {
   const AppLoadingWidget({Key key}) : super(key: key);
 
   @override
-  Widget buildWidgetContent(BuildContext context) {
+  Widget buildWidgetContents(BuildContext context) {
     return Container(
       alignment: Alignment.center,
       child: CircularProgressIndicator(

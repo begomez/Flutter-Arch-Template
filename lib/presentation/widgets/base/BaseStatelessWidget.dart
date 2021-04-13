@@ -8,12 +8,12 @@ abstract class BaseStatelessWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return this.buildWidgetContent(context);
+    return this.buildWidgetContents(context);
   }
 
   /**
-   * Return widget's content
+   * Returns widget content.
+   * Abstract method that has to be overriden by children
    */
-  //XXX: must be overriden by class
-  Widget buildWidgetContent(BuildContext context);
+  Widget buildWidgetContents(BuildContext context);
 }

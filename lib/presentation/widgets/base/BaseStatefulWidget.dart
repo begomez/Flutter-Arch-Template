@@ -1,30 +1,31 @@
 import 'package:flutter/material.dart';
 
 /**
- * Base class for widgets with dynamic state
+ * Base class for widgets with dynamic state that uses NO bloc.
+ * If need bloc usage, see BaseStatefulWidgetWithBloc
  */
 abstract class BaseStatefulWidget extends StatefulWidget {
   const BaseStatefulWidget({Key key}) : super(key: key);
 
   @override
-  BaseStatefulWidgetState createState() =>
-      BaseStatefulWidgetState<BaseStatefulWidget>();
+  BaseStatefulWidgetState createState();
 }
 
-class BaseStatefulWidgetState<T extends BaseStatefulWidget>
+/**
+ * Companion state class
+ */
+abstract class BaseStatefulWidgetState<T extends BaseStatefulWidget>
     extends State<BaseStatefulWidget> {
   BaseStatefulWidgetState() : super();
 
   @override
   Widget build(BuildContext context) {
-    return this.buildWidgetContent();
+    return this.buildWidgetContents(context);
   }
 
-  void refresh({Function action}) {
-    this.setState(() {
-      action?.call();
-    });
-  }
-
-  Widget buildWidgetContent() {}
+  /**
+   * Returns widget content.
+   * Abstract method that has to be overriden by children
+   */
+  Widget buildWidgetContents(BuildContext context);
 }

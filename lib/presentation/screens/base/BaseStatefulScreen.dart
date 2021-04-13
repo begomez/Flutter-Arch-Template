@@ -8,13 +8,10 @@ abstract class BaseStatefulScreen extends StatefulWidget {
   final String title;
 
   const BaseStatefulScreen({this.title = "", Key key}) : super(key: key);
-
-  @override
-  BaseStatefulScreenState createState();
 }
 
 /**
- * 
+ * Companion state class
  */
 abstract class BaseStatefulScreenState<T extends BaseStatefulScreen>
     extends State<BaseStatefulScreen> with ScreenMixin {

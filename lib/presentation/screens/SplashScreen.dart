@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/presentation/navigation/AppNavigator.dart';
 import 'package:flutter_template/presentation/screens/base/BaseStatelessScreen.dart';
-import 'package:flutter_template/presentation/widgets/factory/WidgetFactory.dart';
 
+/**
+ * Initial/launch screen
+ */
 class SplashScren extends BaseStatelessScreen {
   const SplashScren({String title = "", Key key})
       : super(title: title, key: key);

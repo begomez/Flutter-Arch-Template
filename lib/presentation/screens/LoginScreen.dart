@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/presentation/resources/AppStyles.dart';
 
 import 'package:flutter_template/presentation/screens/base/BaseStatelessScreen.dart';
 import 'package:flutter_template/presentation/utils/AppLocalizations.dart';
 import 'package:flutter_template/presentation/widgets/LoginButtonWidget.dart';
 
+/**
+ * Login screen
+ */
 class LoginScreen extends BaseStatelessScreen {
   const LoginScreen({String title = "", Key key})
       : super(title: title, key: key);
@@ -16,11 +20,20 @@ class LoginScreen extends BaseStatelessScreen {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Center(
-              child: Text(AppLocalizations.of(context).translate("app_name"))),
+          Padding(
+            padding: const EdgeInsets.only(top: _Dimens.PADDING_TOP),
+            child: Text(
+              AppLocalizations.of(context).translate("app_name"),
+              style: AppStyles.title,
+            ),
+          ),
           LoginButtonWidget()
         ],
       ),
     );
   }
+}
+
+abstract class _Dimens {
+  static const double PADDING_TOP = 128.0;
 }

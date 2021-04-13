@@ -9,7 +9,7 @@ import 'package:flutter_template/presentation/navigation/AppNavigator.dart';
 import 'package:flutter_template/presentation/resources/AppColors.dart';
 import 'package:flutter_template/presentation/resources/AppStyles.dart';
 import 'package:flutter_template/presentation/utils/AppLocalizations.dart';
-import 'package:flutter_template/presentation/widgets/LoadingWidget.dart';
+import 'package:flutter_template/presentation/widgets/convenient/LoadingWidget.dart';
 import 'package:flutter_template/presentation/widgets/factory/WidgetFactory.dart';
 
 class LoginButtonWidget extends StatefulWidget {

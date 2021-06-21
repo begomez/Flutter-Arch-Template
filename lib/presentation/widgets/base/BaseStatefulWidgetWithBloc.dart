@@ -25,9 +25,11 @@ abstract class BaseStatefulWidgetWithBloc<TargetBloc extends BaseBloc>
  * - TargetData: data model returned by previous bloc
  * - TargetDTO: params model used as previous bloc input
  */
-abstract class BaseStatefulWidgetWithBlocState<TargetBloc extends BaseBloc,
-        TargetData extends BaseModel, TargetDTO extends BaseDTO>
-    extends BaseStatefulWidgetState<BaseStatefulWidgetWithBloc>
+abstract class BaseStatefulWidgetWithBlocState<
+        TargetWidget extends BaseStatefulWidgetWithBloc,
+        TargetBloc extends BaseBloc,
+        TargetData extends BaseModel,
+        TargetDTO extends BaseDTO> extends BaseStatefulWidgetState<TargetWidget>
     with BlocMixin<TargetBloc, TargetData, TargetDTO> {
   BaseStatefulWidgetWithBlocState(
       {bool autocall = false, TargetBloc bloc = null})

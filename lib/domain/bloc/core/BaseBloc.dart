@@ -52,7 +52,7 @@ abstract class BaseBloc<Params extends BaseDTO, Output extends BaseModel> {
   void dispose() {
     this.input.close();
 
-    if (this._controller.isClosed) {
+    if (!this._controller.isClosed) {
       this._controller.close();
     }
   }

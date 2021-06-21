@@ -15,7 +15,7 @@ abstract class BaseStatefulWidget extends StatefulWidget {
  * Companion state class
  */
 abstract class BaseStatefulWidgetState<T extends BaseStatefulWidget>
-    extends State<BaseStatefulWidget> {
+    extends State<T> {
   BaseStatefulWidgetState() : super();
 
   @override

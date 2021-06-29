@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/common/models/core/BaseModel.dart';
 
+/**
+ * Data model for user session
+ */
 class UserSessionModel extends BaseModel {
   final String name;
   final String mail;

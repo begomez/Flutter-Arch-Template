@@ -1,3 +1,6 @@
+/**
+ * Custom logger used to centralize messages
+ */
 abstract class AppLogger {
   static const String TAG = "AppLogger";
 

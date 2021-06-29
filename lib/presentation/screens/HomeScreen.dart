@@ -14,7 +14,7 @@ class HomeScreen extends BaseStatelessScreen {
   Widget buildScreenContents(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        WidgetFactory.buildDialog(context);
+        await WidgetFactory.buildDialog(context);
 
         return true;
       },

@@ -1,6 +1,9 @@
 import 'package:flutter_template/common/models/core/BaseModel.dart';
 import 'package:flutter_template/domain/ErrorCodes.dart';
 
+/**
+ * Custom error model encapsulating code and description
+ */
 class ErrorModel extends BaseModel {
   static const int NO_ERROR_CODE = ErrorCodes.INVALID;
   static const String NO_DESCRIP = "";

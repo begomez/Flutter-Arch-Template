@@ -7,6 +7,7 @@ import 'package:flutter_template/domain/dto/core/BaseDTO.dart';
 
 /**
  * Mixin used to hook BLoC functionality on widgets.
+ * 
  * It is a generic class receiving:
  * - TargetBloc: bloc used by the mixin
  * - TargetData: data model returned by previous bloc
@@ -29,11 +30,11 @@ mixin BlocMixin<TargetBloc extends BaseBloc, TargetData extends BaseModel,
   void call() {
     TargetDTO dto = this.getDTO();
 
-    // BLOC initialized...
+    // BLOC initialized
     if (this.hasBloc()) {
       // show loading
       this.bloc.processNewEvent(
-          ResourceResult<TargetData>(state: ResourceState.LOADING));
+          ResourceResult<TargetData>(status: ResourceStatus.LOADING));
 
       // perform op
       this.bloc.performOperation(dto);
@@ -54,14 +55,14 @@ mixin BlocMixin<TargetBloc extends BaseBloc, TargetData extends BaseModel,
         child: StreamBuilder<ResourceResult<TargetData>>(
           stream: this.bloc.output,
           builder: (context, snap) {
-            switch (snap?.data?.state) {
-              case ResourceState.LOADING:
+            switch (snap?.data?.status) {
+              case ResourceStatus.LOADING:
                 return this.buildLoading(context);
-              case ResourceState.ERROR:
+              case ResourceStatus.ERROR:
                 return this.buildError(context);
-              case ResourceState.SUCCESS:
+              case ResourceStatus.SUCCESS:
                 return this.buildSuccess(context, snap.data.data);
-              case ResourceState.INITIAL:
+              case ResourceStatus.INITIAL:
               default:
                 return this.buildInitial(context);
             }

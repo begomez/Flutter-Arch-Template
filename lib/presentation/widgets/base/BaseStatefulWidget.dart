@@ -24,8 +24,9 @@ abstract class BaseStatefulWidgetState<T extends BaseStatefulWidget>
   }
 
   /**
-   * Returns widget content.
-   * Abstract method that has to be overriden by children
+   * Returns widget contents.
+   * 
+   * Must be overriden by children
    */
   Widget buildWidgetContents(BuildContext context);
 }

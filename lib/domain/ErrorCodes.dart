@@ -1,3 +1,6 @@
+/**
+ * Collection of possible error codes
+ */
 abstract class ErrorCodes {
   static const int INVALID = -1;
 

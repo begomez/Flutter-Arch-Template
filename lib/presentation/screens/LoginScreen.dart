@@ -6,7 +6,7 @@ import 'package:flutter_template/presentation/utils/AppLocalizations.dart';
 import 'package:flutter_template/presentation/widgets/LoginButtonWidget.dart';
 
 /**
- * Login screen
+ * Login screen asking for credentials
  */
 class LoginScreen extends BaseStatelessScreen {
   const LoginScreen({String title = "", Key key})

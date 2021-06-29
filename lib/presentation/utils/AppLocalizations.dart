@@ -9,6 +9,9 @@ import 'package:flutter_template/common/utils/AppLogger.dart';
  */
 enum LangCodes { EN, ES }
 
+/**
+ * Extension to provide functionality to previous enum
+ */
 extension LangCodesExtension on LangCodes {
   String toCode() {
     return this.toString().replaceAll("LangCodes.", "").toLowerCase();
@@ -19,9 +22,8 @@ extension LangCodesExtension on LangCodes {
  * Translations manager
  */
 class AppLocalizations {
-  final String DIR = "i18n/";
-  final String EXTENSION = ".json";
-
+  static final String DIR = "i18n/";
+  static final String EXTENSION = ".json";
   static final AppLocalizationsDelegate delegate = AppLocalizationsDelegate();
 
   Locale locale;

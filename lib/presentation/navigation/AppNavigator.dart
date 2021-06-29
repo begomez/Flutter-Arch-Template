@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/presentation/navigation/Routes.dart';
 
+/**
+ * Class that centralizes route creation and page navigation
+ */
 abstract class AppNavigator {
   static Future<void> closeAll(BuildContext cntxt) async {
     return Navigator.of(cntxt)

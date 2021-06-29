@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 
 /**
- * Mixin used to abstract screen layout
+ * Mixin used to abstract screen layout operations
  */
 mixin ScreenMixin {
+  /**
+   * Build the screen main structure
+   */
   Widget buildScreen(BuildContext context) {
     return Scaffold(
       appBar: this.buildScreenAppBar(context),
@@ -12,19 +15,21 @@ mixin ScreenMixin {
   }
 
   /**
-   * Builds a widget representing main content of the screen
+   * Builds a widget representing the contents of the screen.
+   * Must be overriden by children
    */
-  //XXX: must be overriden by subclasses
   Widget buildScreenContents(BuildContext cntxt);
 
   /**
-   * Returns app bar displayed on screen
+   * Returns app bar displayed on screen.
+   * Can be overriden by children if needed
    */
   Widget buildScreenAppBar(BuildContext cntxt) {
     final title = this.getScreenTitle(cntxt);
     if (title.isNotEmpty) {
       return AppBar(
         title: Text(title),
+        automaticallyImplyLeading: this.leading,
       );
     } else {
       return null;
@@ -32,7 +37,15 @@ mixin ScreenMixin {
   }
 
   /**
-   * Returns title displayed in app bar, return "" to hide bar
+   * Returns title displayed in app bar. 
+   * Must be overriden by children.
+   * Return "" to hide app bar.
    */
   String getScreenTitle(BuildContext cntxt);
+
+  /**
+   * Accessor that returns a flag to show/hide back button on app bar.
+   * Can be overriden by children
+   */
+  bool get leading => true;
 }

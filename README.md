@@ -1,23 +1,38 @@
 # flutter_template
 
-A new Flutter project.
+Flutter architecture template.
 
-## Getting Started
+## Architecture Overview
 
-This project is a starting point for a Flutter application.
+Project is structured in the following layers/modules:
 
-A few resources to get you started if this is your first Flutter project:
+- Presentation
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+- Domain
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- Data
 
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-HOW TO
-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+- Network
+
+PRESENTATION LAYER is Flutter dependent. Defines its own custom hierarchy: screens (
+widgets usually used as containers, similar to Android activities) and widgets (pieces of UI with behavior, similar to
+Android fragments).
+
+DOMAIN LAYER defines use cases, functionalities that the app can perform. Ex: performing a login
+
+DATA LAYER is used to manage and orchestrate different data sources.
+
+NETWORK LAYER performs net connections either directly or indirectly.
+
+Data models are share across all modules, there is no custom data model per layer.
+
+DTO (Data Transport Object) are used to define use case inputs in domain layer and provide type safety.
+
+## Code generation commands
+
+flutter packages pub run build_runner build --delete-conflicting-ouputs 
+
+## HOW TOs
 
 - Create a stateless screen
 
@@ -46,5 +61,9 @@ Ex: LoadingWidget
 - Create a stateful widget with bloc
 
 1. Inherit from "BaseStatefulWidgetWithBloc"
-2. Override buildWidgetContent() to return widget contents
+2. Override buildWidgetContents() to return widget contents
 Ex: LoginButtonWidget
+
+- Navigation
+
+1. Encapsulate navigation on AppNavigator.dart

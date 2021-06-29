@@ -19,8 +19,10 @@ abstract class BaseStatefulWidgetWithBloc<TargetBloc extends BaseBloc>
 }
 
 /**
- * Companion state class
+ * Companion state class  
+ * 
  * It is a generic class receiving:
+ * - TargetWidget: widget binded to this state obj
  * - TargetBloc: bloc used by the inner mixin
  * - TargetData: data model returned by previous bloc
  * - TargetDTO: params model used as previous bloc input
@@ -31,8 +33,7 @@ abstract class BaseStatefulWidgetWithBlocState<
         TargetData extends BaseModel,
         TargetDTO extends BaseDTO> extends BaseStatefulWidgetState<TargetWidget>
     with BlocMixin<TargetBloc, TargetData, TargetDTO> {
-  BaseStatefulWidgetWithBlocState(
-      {bool autocall = false, TargetBloc bloc = null})
+  BaseStatefulWidgetWithBlocState({bool autocall = false, TargetBloc bloc})
       : super() {
     this.initMixin(autocall: autocall, bloc: bloc);
   }

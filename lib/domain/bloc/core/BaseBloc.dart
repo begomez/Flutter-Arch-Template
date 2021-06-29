@@ -10,24 +10,25 @@ import 'package:flutter_template/domain/dto/core/BaseDTO.dart';
 /**
  * Superclass for BLoC instances
  * 
- * Generic class receiving:
- * - Params: model used as input
- * - Output: model used as output
+ * It is a generic class receiving:
+ * - Params: model used as bloc input
+ * - Output: model used as bloc output
  */
 abstract class BaseBloc<Params extends BaseDTO, Output extends BaseModel> {
   StreamController<ResourceResult<Output>> _controller =
       StreamController<ResourceResult<Output>>();
 
-  Stream<ResourceResult<Output>> get output => this._controller.stream;
-
-  StreamSink<ResourceResult<Output>> get input => this._controller.sink;
-
   BaseBloc();
 
+  /**
+   * Performs bloc's main operation (data retrieval, data storage...)
+   * 
+   * @param dto
+   */
   void performOperation(Params dto) async {
     var result;
     try {
-      final data = await this.fetchData(dto);
+      final data = await this.manageData(dto);
 
       result = this.buildResult(data: data);
     } on DataException catch (de) {
@@ -39,16 +40,34 @@ abstract class BaseBloc<Params extends BaseDTO, Output extends BaseModel> {
     }
   }
 
-  Future<Output> fetchData(Params dto);
+  /**
+   * Virtual method to manage data.
+   * Must be overriden by children.
+   * 
+   * @param dto
+   */
+  Future<Output> manageData(Params dto);
 
+  /**
+   * Returns specific error code  for this operation.
+   * Can/should be overriden by children
+   */
   int getErrorCode() => ErrorCodes.INVALID;
 
+  /**
+   * Adds a new event to the stream controller 
+   * 
+   * @param event
+   */
   void processNewEvent(ResourceResult event) {
     if (!this._controller.isClosed) {
       this.input.add(event);
     }
   }
 
+  /**
+   * Free bloc resources
+   */
   void dispose() {
     this.input.close();
 
@@ -57,13 +76,29 @@ abstract class BaseBloc<Params extends BaseDTO, Output extends BaseModel> {
     }
   }
 
+  /**
+   * Wrap operation result on a result object, for consistency
+   * 
+   * @param data
+   * @param errorCode
+   */
   ResourceResult<Output> buildResult(
-      {Output data = null, int errorCode = ErrorCodes.INVALID}) {
+      {Output data, int errorCode = ErrorCodes.INVALID}) {
     ResourceResult<Output> res = ResourceResult(
         data: data, error: errorCode >= 0 ? ErrorModel(code: errorCode) : null);
 
-    res.state = res.hasData() ? ResourceState.SUCCESS : ResourceState.ERROR;
+    res.status = res.hasData() ? ResourceStatus.SUCCESS : ResourceStatus.ERROR;
 
     return res;
   }
+
+  /**
+   * Stream accessor
+   */
+  Stream<ResourceResult<Output>> get output => this._controller.stream;
+
+  /**
+   * Sink accessor
+   */
+  StreamSink<ResourceResult<Output>> get input => this._controller.sink;
 }

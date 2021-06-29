@@ -11,20 +11,21 @@ abstract class BaseStatefulScreen extends StatefulWidget {
 }
 
 /**
- * Companion state class
+ * Companion state class.
+ * 
+ * It is a generic component:
+ * - TargetScreen: data type for the widget binded to this class
  */
-abstract class BaseStatefulScreenState<T extends BaseStatefulScreen>
-    extends State<BaseStatefulScreen> with ScreenMixin {
+abstract class BaseStatefulScreenState<TargetScreen extends BaseStatefulScreen>
+    extends State<TargetScreen> with ScreenMixin {
   BaseStatefulScreenState() : super();
+
+  // See ScreenMixin
 
   @override
   Widget build(BuildContext context) {
     return this.buildScreen(context);
   }
 
-  /**
-   * Returns title displayed in app bar, return "" to hide bar
-   */
-  //XXX: can be overriden by subclasses
   String getScreenTitle(BuildContext cntxt) => this.widget.title;
 }

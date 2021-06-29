@@ -7,6 +7,9 @@ import 'package:flutter_template/domain/repo/ILoginRepository.dart';
 
 const String TAG = "LoginRepositoryImpl";
 
+/**
+ * Implementation of login repository
+ */
 class LoginRepositoryImpl extends ILoginRepository {
   final ILoginApi api;
 

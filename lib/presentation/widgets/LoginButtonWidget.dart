@@ -20,8 +20,8 @@ class LoginButtonWidget extends BaseStatefulWidgetWithBloc<LoginBloc> {
   _LoginButtonWidgetState createState() => _LoginButtonWidgetState();
 }
 
-class _LoginButtonWidgetState extends BaseStatefulWidgetWithBlocState<LoginBloc,
-    UserSessionModel, LoginDTO> {
+class _LoginButtonWidgetState extends BaseStatefulWidgetWithBlocState<
+    LoginButtonWidget, LoginBloc, UserSessionModel, LoginDTO> {
   _LoginButtonWidgetState()
       : super(autocall: false, bloc: LoginBloc(FakeLoginApiImpl()));
 

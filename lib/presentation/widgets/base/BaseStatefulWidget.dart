@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 /**
- * Base class for widgets with dynamic state that uses NO bloc.
- * If need bloc usage, see BaseStatefulWidgetWithBloc
+ * Base class for widgets with dynamic state that uses NO BloC.
+ * When needing BLoC usage, see BaseBlocWidget
  */
 abstract class BaseStatefulWidget extends StatefulWidget {
   const BaseStatefulWidget({Key key}) : super(key: key);

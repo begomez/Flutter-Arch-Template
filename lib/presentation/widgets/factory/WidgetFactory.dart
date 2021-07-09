@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/domain/bloc/LogoutBloc.dart';
-import 'package:flutter_template/domain/dto/LogoutDTO.dart';
+import 'package:flutter_template/domain/event/LogoutEvent.dart';
 import 'package:flutter_template/network/fake/FakeLoginApiImpl.dart';
 import 'package:flutter_template/presentation/navigation/AppNavigator.dart';
 import 'package:flutter_template/presentation/resources/AppColors.dart';
@@ -25,7 +25,7 @@ abstract class WidgetFactory {
                     Navigator.of(context).pop();
 
                     LogoutBloc(FakeLoginApiImpl())
-                        .performOperation(LogoutDTO());
+                        .performOperation(LogoutEvent());
 
                     AppNavigator.toLogin(context);
                   },

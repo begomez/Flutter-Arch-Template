@@ -18,7 +18,7 @@ PRESENTATION LAYER is Flutter dependent. Defines its own custom hierarchy: scree
 widgets usually used as containers, similar to Android activities) and widgets (pieces of UI with behavior, similar to
 Android fragments).
 
-DOMAIN LAYER defines use cases, functionalities that the app can perform. Ex: performing a login
+DOMAIN LAYER provides state management through BLoC's for different use cases. Ex: performing a login
 
 DATA LAYER is used to manage and orchestrate different data sources.
 
@@ -26,7 +26,7 @@ NETWORK LAYER performs net connections either directly or indirectly.
 
 Data models are share across all modules, there is no custom data model per layer.
 
-DTO (Data Transport Object) are used to define use case inputs in domain layer and provide type safety.
+Events (in fact just simple Data Transport Object) are used to define use case inputs in domain layer and provide type safety.
 
 ## Code generation commands
 

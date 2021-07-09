@@ -5,16 +5,16 @@ import 'package:flutter_template/common/models/ErrorModel.dart';
 import 'package:flutter_template/common/models/result/ResourceResult.dart';
 import 'package:flutter_template/data/exception/DataException.dart';
 import 'package:flutter_template/domain/ErrorCodes.dart';
-import 'package:flutter_template/domain/dto/core/BaseDTO.dart';
+import 'package:flutter_template/domain/event/core/BaseEvent.dart';
 
 /**
  * Superclass for BLoC instances
  * 
  * It is a generic class receiving:
- * - Params: model used as bloc input
- * - Output: model used as bloc output
+ * - Input: model used as bloc input/params
+ * - Output: model used as bloc output/result
  */
-abstract class BaseBloc<Params extends BaseDTO, Output extends BaseModel> {
+abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
   StreamController<ResourceResult<Output>> _controller =
       StreamController<ResourceResult<Output>>();
 
@@ -25,7 +25,7 @@ abstract class BaseBloc<Params extends BaseDTO, Output extends BaseModel> {
    * 
    * @param dto
    */
-  void performOperation(Params dto) async {
+  void performOperation(Input dto) async {
     var result;
     try {
       final data = await this.manageData(dto);
@@ -46,7 +46,7 @@ abstract class BaseBloc<Params extends BaseDTO, Output extends BaseModel> {
    * 
    * @param dto
    */
-  Future<Output> manageData(Params dto);
+  Future<Output> manageData(Input dto);
 
   /**
    * Returns specific error code  for this operation.

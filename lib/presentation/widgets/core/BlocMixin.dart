@@ -24,7 +24,10 @@ mixin BlocMixin<
   bool _autocall = false;
 
   //XXX: must be invoked since mixins have no constructors
-  void initMixin({TargetBloc bloc, bool autocall}) {
+  void initMixin({@required TargetBloc bloc, @required bool autocall}) {
+    assert(bloc != null);
+    assert(autocall != null);
+
     this._bloc = bloc;
     this._autocall = autocall;
   }
@@ -106,8 +109,7 @@ mixin BlocMixin<
   bool hasBloc() => (this._bloc != null);
 
   /*
-   * Accessor for boolean flag used to state whether the underlying operation is
-   * launched automatically or due to user event
+   * Accessor for bool flag
    */
-  bool get isAutocall => this._autocall;
+  bool launchesAutomatically() => this._autocall;
 }

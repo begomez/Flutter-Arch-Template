@@ -38,13 +38,13 @@ abstract class BaseBlocWidgetState<
     extends BaseStatefulWidgetState<TargetWidget>
     with BlocMixin<TargetBloc, TargetEvent, TargetModel> {
 
-  BaseBlocWidgetState({bool autocall = false, TargetBloc bloc}) : super() {
-    this.initMixin(autocall: autocall, bloc: bloc);
+  BaseBlocWidgetState() : super() {
+    this.initMixin(autocall: this.getAutocallFlag(), bloc: this.getBlocInstance());
   }
 
   @override
   void didChangeDependencies() {
-    if (this.isAutocall) {
+    if (this.launchesAutomatically()) {
       this.call();
     }
 
@@ -65,7 +65,8 @@ abstract class BaseBlocWidgetState<
   }
 
   @override
-  Widget buildLoading(BuildContext cntxt) => Stack(
+  Widget buildLoading(BuildContext cntxt) =>
+      Stack(
         children: [this.buildInitial(cntxt), AppLoadingWidget()],
       );
 
@@ -73,4 +74,14 @@ abstract class BaseBlocWidgetState<
   Widget buildError(BuildContext cntxt) {
     return AppErrorWidget();
   }
+
+  /*
+   * Returns flag for autocall behavior
+   */
+  bool getAutocallFlag();
+
+  /*
+   * Returns instance of BLoC required by widget
+   */
+  TargetBloc getBlocInstance();
 }

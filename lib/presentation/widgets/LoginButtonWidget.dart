@@ -30,13 +30,20 @@ class _LoginButtonWidgetState
         LoginEvent,
         UserSessionModel> {
 
-  _LoginButtonWidgetState()
-      : super(autocall: false, bloc: LoginBloc(FakeLoginApiImpl()));
+  _LoginButtonWidgetState() : super();
 
   @override
   LoginEvent getEvent() {
     return LoginEvent(user: "user...", pass: "pass...");
   }
+
+  @override
+  LoginBloc getBlocInstance() {
+    return LoginBloc(FakeLoginApiImpl());
+  }
+
+  @override
+  bool getAutocallFlag() => false;
 
   @override
   Widget buildInitial(BuildContext cntxt) => this._buildBtn(cntxt);
@@ -62,10 +69,5 @@ class _LoginButtonWidgetState
         callback: () async {
           this.call();
         });
-  }
-
-  @override
-  LoginBloc getBloc() {
-    throw UnimplementedError();
   }
 }

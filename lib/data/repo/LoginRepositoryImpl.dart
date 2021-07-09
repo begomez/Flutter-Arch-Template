@@ -7,8 +7,10 @@ import 'package:flutter_template/domain/repo/ILoginRepository.dart';
 
 const String TAG = "LoginRepositoryImpl";
 
-/**
- * Implementation of login repository
+/*
+ * Implementation of login repository.
+ *
+ * Delegates operations on corresponding API class.
  */
 class LoginRepositoryImpl extends ILoginRepository {
   final ILoginApi api;
@@ -21,6 +23,7 @@ class LoginRepositoryImpl extends ILoginRepository {
       final result = await this.api.login(user: user, pass: pass);
 
       return result.user;
+
     } on Exception catch (e) {
       AppLogger.e(tag: TAG, msg: "login()", error: e);
 
@@ -34,6 +37,7 @@ class LoginRepositoryImpl extends ILoginRepository {
       final result = await this.api.logout();
 
       return result.flag;
+
     } on Exception catch (e) {
       AppLogger.e(tag: TAG, msg: "logout()", error: e);
 

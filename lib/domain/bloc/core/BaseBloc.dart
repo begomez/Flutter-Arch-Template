@@ -7,65 +7,72 @@ import 'package:flutter_template/data/exception/DataException.dart';
 import 'package:flutter_template/domain/ErrorCodes.dart';
 import 'package:flutter_template/domain/event/core/BaseEvent.dart';
 
-/**
- * Superclass for BLoC instances
+
+/*
+ * Superclass for BLoC derived classes
  * 
  * It is a generic class receiving:
- * - Input: model used as bloc input/params
- * - Output: model used as bloc output/result
+ *
+ * - Input: data type used as bloc input/params
+ * - Output: data model type used as bloc output/result
  */
 abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
+
   StreamController<ResourceResult<Output>> _controller =
       StreamController<ResourceResult<Output>>();
 
   BaseBloc();
 
-  /**
-   * Performs bloc's main operation (data retrieval, data storage...)
+  /*
+   * Performs bloc's main operation (data retrieval, data storage...) using data
+   * specified on input parameter
    * 
    * @param dto
    */
-  void performOperation(Input dto) async {
+  void performOperation(Input event) async {
     var result;
     try {
-      final data = await this.manageData(dto);
+      final data = await this.processEvent(event);
 
       result = this.buildResult(data: data);
+
     } on DataException catch (de) {
       result = this.buildResult(data: null, errorCode: ErrorCodes.DATA_ERROR);
     } on Exception catch (e) {
       result = this.buildResult(data: null, errorCode: this.getErrorCode());
     } finally {
-      this.processNewEvent(result);
+      this.processResult(result);
     }
   }
 
-  /**
-   * Virtual method to manage data.
+  /*
+   * Processes event received and returns result for the operation.
+   *
    * Must be overriden by children.
-   * 
-   * @param dto
-   */
-  Future<Output> manageData(Input dto);
-
-  /**
-   * Returns specific error code  for this operation.
-   * Can/should be overriden by children
-   */
-  int getErrorCode() => ErrorCodes.INVALID;
-
-  /**
-   * Adds a new event to the stream controller 
    * 
    * @param event
    */
-  void processNewEvent(ResourceResult event) {
+  Future<Output> processEvent(Input event);
+
+  /*
+   * Returns a specific error code  for this operation.
+   *
+   * Should be overriden by children.
+   */
+  int getErrorCode() => ErrorCodes.INVALID;
+
+  /*
+   * Adds a result to the stream controller
+   * 
+   * @param result
+   */
+  void processResult(ResourceResult result) {
     if (!this._controller.isClosed) {
-      this.input.add(event);
+      this.input.add(result);
     }
   }
 
-  /**
+  /*
    * Free bloc resources
    */
   void dispose() {
@@ -76,28 +83,26 @@ abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
     }
   }
 
-  /**
-   * Wrap operation result on a result object, for consistency
+  /*
+   * Wraps data on a result object, for consistency across the app
    * 
-   * @param data
-   * @param errorCode
+   * @param data Data returned by the operation performed in the bloc
+   * @param errorCode Possible error code launched when performing the operation
    */
-  ResourceResult<Output> buildResult(
-      {Output data, int errorCode = ErrorCodes.INVALID}) {
-    ResourceResult<Output> res = ResourceResult(
-        data: data, error: errorCode >= 0 ? ErrorModel(code: errorCode) : null);
+  ResourceResult<Output> buildResult({Output data, int errorCode = ErrorCodes.INVALID}) {
 
-    res.status = res.hasData() ? ResourceStatus.SUCCESS : ResourceStatus.ERROR;
+    ErrorModel err = (errorCode >= 0)? ErrorModel(code: errorCode) : null;
+    ResourceStatus status = (data != null)? ResourceStatus.SUCCESS : ResourceStatus.ERROR;
 
-    return res;
+    return ResourceResult<Output>(data: data, error: err, status: status);
   }
 
-  /**
+  /*
    * Stream accessor
    */
   Stream<ResourceResult<Output>> get output => this._controller.stream;
 
-  /**
+  /*
    * Sink accessor
    */
   StreamSink<ResourceResult<Output>> get input => this._controller.sink;

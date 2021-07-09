@@ -4,13 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_template/common/utils/AppLogger.dart';
 
-/**
+/*
  * Admitted language codes for application
  */
 enum LangCodes { EN, ES }
 
-/**
- * Extension to provide functionality to previous enum
+/*
+ * Extension providing additional functionality to previous enum
  */
 extension LangCodesExtension on LangCodes {
   String toCode() {
@@ -18,7 +18,7 @@ extension LangCodesExtension on LangCodes {
   }
 }
 
-/**
+/*
  * Translations manager
  */
 class AppLocalizations {
@@ -56,7 +56,7 @@ class AppLocalizations {
   }
 }
 
-/**
+/*
  * Translations delegate
  */
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

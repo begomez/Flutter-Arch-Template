@@ -6,7 +6,7 @@ import 'package:flutter_template/domain/bloc/core/BaseBloc.dart';
 import 'package:flutter_template/domain/event/LogoutEvent.dart';
 import 'package:flutter_template/domain/repo/ILoginRepository.dart';
 
-/**
+/*
  * BLoC used to perform logout operation
  */
 class LogoutBloc extends BaseBloc<LogoutEvent, BooleanWrapper> {
@@ -17,7 +17,7 @@ class LogoutBloc extends BaseBloc<LogoutEvent, BooleanWrapper> {
   }
 
   @override
-  Future<BooleanWrapper> manageData(LogoutEvent dto) async {
+  Future<BooleanWrapper> processEvent(LogoutEvent event) async {
     return BooleanWrapper(flag: await this._repo.logout());
   }
 

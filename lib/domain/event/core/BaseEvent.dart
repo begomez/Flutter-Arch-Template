@@ -1,6 +1,5 @@
-/**
- * Marking class for events used in domain layer.
- * These classes act as data transport objects
+/*
+ * Marking class used for events in domain layer.
  */
 class BaseEvent {
   const BaseEvent();

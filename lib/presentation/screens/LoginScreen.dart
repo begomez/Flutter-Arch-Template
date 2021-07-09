@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/presentation/resources/AppStyles.dart';
 
-import 'package:flutter_template/presentation/screens/base/BaseStatelessScreen.dart';
+import 'package:flutter_template/presentation/screens/core/BaseStatelessScreen.dart';
 import 'package:flutter_template/presentation/utils/AppLocalizations.dart';
 import 'package:flutter_template/presentation/widgets/LoginButtonWidget.dart';
 
-/**
+/*
  * Login screen asking for credentials
  */
 class LoginScreen extends BaseStatelessScreen {
+
   const LoginScreen({String title = "", Key key})
       : super(title: title, key: key);
 

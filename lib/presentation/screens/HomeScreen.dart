@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/presentation/screens/base/BaseStatelessScreen.dart';
+import 'package:flutter_template/presentation/screens/core/BaseStatelessScreen.dart';
 import 'package:flutter_template/presentation/utils/AppLocalizations.dart';
 import 'package:flutter_template/presentation/widgets/factory/WidgetFactory.dart';
 
-/**
+/*
  * Home screen displayed after login
  */
 class HomeScreen extends BaseStatelessScreen {
+
   const HomeScreen({String title = "", Key key})
       : super(title: title, key: key);
 

@@ -1,4 +1,4 @@
-/**
+/*
  * Enumeration of possible route paths
  */
 abstract class Routes {

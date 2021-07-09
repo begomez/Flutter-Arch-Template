@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-/**
+/*
  * Base class for widgets with no dynamic state
  */
 abstract class BaseStatelessWidget extends StatelessWidget {
@@ -11,7 +11,7 @@ abstract class BaseStatelessWidget extends StatelessWidget {
     return this.buildWidgetContents(context);
   }
 
-  /**
+  /*
    * Returns widget content.
    * Must be overriden by children
    */

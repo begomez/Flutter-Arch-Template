@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/presentation/utils/AppLocalizations.dart';
-import 'package:flutter_template/presentation/widgets/base/BaseStatelessWidget.dart';
+import 'package:flutter_template/presentation/widgets/core/BaseStatelessWidget.dart';
 
-/**
+/*
  * Widget displayed when error
  */
 class AppErrorWidget extends BaseStatelessWidget {

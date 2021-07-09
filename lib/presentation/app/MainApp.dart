@@ -7,7 +7,7 @@ import 'package:flutter_template/presentation/screens/LoginScreen.dart';
 import 'package:flutter_template/presentation/screens/SplashScreen.dart';
 import 'package:flutter_template/presentation/utils/AppLocalizations.dart';
 
-/**
+/*
  * Widget containing main app
  */
 class MainApp extends StatelessWidget {
@@ -18,7 +18,7 @@ class MainApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: "MainApp",
         theme: AppStyles.appTheme,
-        home: SplashScren(
+        home: SplashScreen(
           title: "",
         ),
         supportedLocales:
@@ -30,9 +30,10 @@ class MainApp extends StatelessWidget {
           GlobalCupertinoLocalizations.delegate,
         ],
         routes: {
-          Routes.splash: (cntxt) => SplashScren(title: ""),
+          Routes.splash: (cntxt) => SplashScreen(title: ""),
           Routes.login: (cntxt) => LoginScreen(title: ""),
           Routes.home: (cntxt) => HomeScreen(title: "")
-        });
+        }
+      );
   }
 }

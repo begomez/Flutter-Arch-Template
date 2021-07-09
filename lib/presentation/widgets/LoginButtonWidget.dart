@@ -7,10 +7,10 @@ import 'package:flutter_template/presentation/navigation/AppNavigator.dart';
 import 'package:flutter_template/presentation/resources/AppColors.dart';
 import 'package:flutter_template/presentation/resources/AppStyles.dart';
 import 'package:flutter_template/presentation/utils/AppLocalizations.dart';
-import 'package:flutter_template/presentation/widgets/base/BaseBlocWidget.dart';
+import 'package:flutter_template/presentation/widgets/core/BaseBlocWidget.dart';
 import 'package:flutter_template/presentation/widgets/factory/WidgetFactory.dart';
 
-/**
+/*
  * Widget that performs login using credentials
  */
 class LoginButtonWidget extends BaseBlocWidget<LoginBloc> {
@@ -20,14 +20,22 @@ class LoginButtonWidget extends BaseBlocWidget<LoginBloc> {
   _LoginButtonWidgetState createState() => _LoginButtonWidgetState();
 }
 
-class _LoginButtonWidgetState extends BaseBlocWidgetState<LoginButtonWidget,
-    LoginBloc, UserSessionModel, LoginEvent> {
+/*
+ * Companion state class
+ */
+class _LoginButtonWidgetState
+    extends BaseBlocWidgetState<
+        LoginButtonWidget,
+        LoginBloc,
+        LoginEvent,
+        UserSessionModel> {
+
   _LoginButtonWidgetState()
       : super(autocall: false, bloc: LoginBloc(FakeLoginApiImpl()));
 
   @override
   LoginEvent getEvent() {
-    return LoginEvent(user: "user", pass: "pass");
+    return LoginEvent(user: "user...", pass: "pass...");
   }
 
   @override
@@ -42,7 +50,6 @@ class _LoginButtonWidgetState extends BaseBlocWidgetState<LoginButtonWidget,
 
   void _navigateToHome(BuildContext cntxt) {
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
-      //await Navigator.of(cntxt).push(MaterialPageRoute(builder: (cntxt) => StatefulSample1()));
       await AppNavigator.toHome(cntxt);
     });
   }
@@ -55,5 +62,10 @@ class _LoginButtonWidgetState extends BaseBlocWidgetState<LoginButtonWidget,
         callback: () async {
           this.call();
         });
+  }
+
+  @override
+  LoginBloc getBloc() {
+    throw UnimplementedError();
   }
 }

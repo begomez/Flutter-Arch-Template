@@ -1,36 +1,35 @@
 import 'package:flutter_template/common/models/ErrorModel.dart';
 
-/**
- * Enum with possible result states
+/*
+ * Enum with possible result statuses
  */
 enum ResourceStatus { INITIAL, LOADING, SUCCESS, ERROR }
 
-/**
- * Wrapper around a result (either with data or error).
+/*
+ * Wrapper around a result, either with data or error.
  * 
- * It is a generic class:
- * - TargetData: data model wrapped
+ * It is a generic class containing:
+ *
+ * - TargetData: data type for data model wrapped in the result
  */
 class ResourceResult<TargetData> {
   final TargetData data;
   final ErrorModel error;
-  ResourceStatus status;
+  final ResourceStatus status;
 
-  ResourceResult({this.data, this.error, this.status = ResourceStatus.INITIAL});
+  const ResourceResult({this.data, this.error, this.status = ResourceStatus.INITIAL});
 
   bool hasData() => this.data != null;
 
   bool hasError() => this.error != null;
 
-  bool isLoading() => this._isSomeState(ResourceStatus.LOADING);
+  bool isLoading() => this._isSomeStatus(ResourceStatus.LOADING);
 
-  bool isInitial() => this._isSomeState(ResourceStatus.INITIAL);
+  bool isInitial() => this._isSomeStatus(ResourceStatus.INITIAL);
 
-  bool isError() => this._isSomeState(ResourceStatus.ERROR);
+  bool isError() => this._isSomeStatus(ResourceStatus.ERROR);
 
-  bool isSuccess() => this._isSomeState(ResourceStatus.SUCCESS);
+  bool isSuccess() => this._isSomeStatus(ResourceStatus.SUCCESS);
 
-  bool _isSomeState(ResourceStatus target) => this.status == target;
-
-  void setState(ResourceStatus state) => this.status = state;
+  bool _isSomeStatus(ResourceStatus target) => this.status == target;
 }

@@ -1,4 +1,4 @@
-/**
+/*
  * Collection of possible error codes
  */
 abstract class ErrorCodes {

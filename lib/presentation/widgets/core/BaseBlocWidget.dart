@@ -2,46 +2,49 @@ import 'package:flutter/material.dart';
 import 'package:flutter_template/common/models/core/BaseModel.dart';
 import 'package:flutter_template/domain/bloc/core/BaseBloc.dart';
 import 'package:flutter_template/domain/event/core/BaseEvent.dart';
-import 'package:flutter_template/presentation/widgets/base/BaseStatefulWidget.dart';
-import 'package:flutter_template/presentation/widgets/base/BlocMixin.dart';
+import 'package:flutter_template/presentation/widgets/core/BaseStatefulWidget.dart';
+import 'package:flutter_template/presentation/widgets/core/BlocMixin.dart';
 import 'package:flutter_template/presentation/widgets/convenient/AppErrorWidget.dart';
 import 'package:flutter_template/presentation/widgets/convenient/AppLoadingWidget.dart';
 
-/**
- * Base class for widgets with dynamic state that use BLoC to perform some operation
- * (data retrieval, data creation, etc).
+/*
+ * Base class for widgets that use BLoC to perform some operation like data retrieval,
+ * data storage, etc.
  */
 abstract class BaseBlocWidget<TargetBloc extends BaseBloc>
     extends BaseStatefulWidget {
+
   const BaseBlocWidget({Key key}) : super(key: key);
 
   @override
   BaseBlocWidgetState createState();
 }
 
-/**
+/*
  * Companion state class  
  * 
  * It is a generic class receiving:
- * - TargetWidget: widget binded to this state obj
- * - TargetBloc: bloc used by the inner mixin
- * - TargetModel: data model returned by previous bloc
- * - TargetEvent: params model used as previous bloc input
+ *
+ * - TargetWidget: data type for widget binded to this state obj
+ * - TargetBloc: data type for the BLoC declared in the underlying mixin
+ * - TargetEvent: data type for the event used as bloc input
+ * - TargetModel: data type for the model returned by bloc
  */
 abstract class BaseBlocWidgetState<
         TargetWidget extends BaseBlocWidget,
         TargetBloc extends BaseBloc,
-        TargetModel extends BaseModel,
-        TargetEvent extends BaseEvent>
+        TargetEvent extends BaseEvent,
+        TargetModel extends BaseModel>
     extends BaseStatefulWidgetState<TargetWidget>
-    with BlocMixin<TargetBloc, TargetModel, TargetEvent> {
+    with BlocMixin<TargetBloc, TargetEvent, TargetModel> {
+
   BaseBlocWidgetState({bool autocall = false, TargetBloc bloc}) : super() {
     this.initMixin(autocall: autocall, bloc: bloc);
   }
 
   @override
   void didChangeDependencies() {
-    if (this.autocall) {
+    if (this.isAutocall) {
       this.call();
     }
 

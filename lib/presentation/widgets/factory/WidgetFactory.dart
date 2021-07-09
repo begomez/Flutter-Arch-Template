@@ -6,6 +6,9 @@ import 'package:flutter_template/presentation/navigation/AppNavigator.dart';
 import 'package:flutter_template/presentation/resources/AppColors.dart';
 import 'package:flutter_template/presentation/utils/AppLocalizations.dart';
 
+/*
+ * Utils for dialogs, toast, overlays...
+ */
 abstract class WidgetFactory {
   static Future buildDialog(BuildContext context) async {
     return showDialog(
@@ -14,13 +17,13 @@ abstract class WidgetFactory {
           return AlertDialog(
             title: Text(AppLocalizations.of(context).translate("app_name")),
             actions: <Widget>[
-              FlatButton(
+              ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
                   child: Text(
                       AppLocalizations.of(context).translate("action_no"))),
-              FlatButton(
+              ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pop();
 

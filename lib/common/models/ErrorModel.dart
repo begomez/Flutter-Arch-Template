@@ -1,7 +1,7 @@
 import 'package:flutter_template/common/models/core/BaseModel.dart';
 import 'package:flutter_template/domain/ErrorCodes.dart';
 
-/**
+/*
  * Custom error model encapsulating code and description
  */
 class ErrorModel extends BaseModel {

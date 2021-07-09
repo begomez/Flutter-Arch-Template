@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/network/request/core/BaseRequest.dart';
 
-/**
- * Request class that provides encapsulation for login operation inputs
+/*
+ * Class that provides encapsulation for login operation inputs
  */
 class LoginRequest extends BaseRequest {
   final String user;

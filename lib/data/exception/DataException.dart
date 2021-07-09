@@ -1,7 +1,7 @@
 import 'package:flutter_template/domain/ErrorCodes.dart';
 
-/**
- * Custom exception for errors in data layer
+/*
+ * Custom exception for errors thrown in data layer
  */
 class DataException {
   final int code;

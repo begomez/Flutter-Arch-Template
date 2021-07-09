@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/domain/event/core/BaseEvent.dart';
 
-/**
+/*
  * Event used to encapsulate params in login operation
  */
 class LoginEvent extends BaseEvent {

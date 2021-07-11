@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_template/presentation/screens/base/ScreenMixin.dart';
+import 'package:flutter_template/presentation/screens/core/ScreenMixin.dart';
 
 /*
  * Base class for screens (containers) with dynamic state 

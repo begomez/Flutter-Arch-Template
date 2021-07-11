@@ -39,12 +39,12 @@ abstract class BaseBlocWidgetState<
     with BlocMixin<TargetBloc, TargetEvent, TargetModel> {
 
   BaseBlocWidgetState() : super() {
-    this.initMixin(autocall: this.getAutocallFlag(), bloc: this.getBlocInstance());
+    this.initMixin(autocall: this.isAutocall(), bloc: this.getBlocInstance());
   }
 
   @override
   void didChangeDependencies() {
-    if (this.launchesAutomatically()) {
+    if (this.isAutocall()) {
       this.call();
     }
 
@@ -78,7 +78,7 @@ abstract class BaseBlocWidgetState<
   /*
    * Returns flag for autocall behavior
    */
-  bool getAutocallFlag();
+  bool isAutocall();
 
   /*
    * Returns instance of BLoC required by widget

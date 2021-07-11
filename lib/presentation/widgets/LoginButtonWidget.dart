@@ -43,7 +43,7 @@ class _LoginButtonWidgetState
   }
 
   @override
-  bool getAutocallFlag() => false;
+  bool isAutocall() => false;
 
   @override
   Widget buildInitial(BuildContext cntxt) => this._buildBtn(cntxt);

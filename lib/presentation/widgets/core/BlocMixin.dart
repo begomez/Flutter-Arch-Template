@@ -107,9 +107,4 @@ mixin BlocMixin<
    * Checks if bloc initialized
    */
   bool hasBloc() => (this._bloc != null);
-
-  /*
-   * Accessor for bool flag
-   */
-  bool launchesAutomatically() => this._autocall;
 }

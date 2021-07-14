@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/common/models/core/BaseModel.dart';
+import 'package:flutter_template/common/models/ErrorModel.dart';
 import 'package:flutter_template/domain/bloc/core/BaseBloc.dart';
 import 'package:flutter_template/domain/event/core/BaseEvent.dart';
 import 'package:flutter_template/presentation/widgets/core/BaseStatefulWidget.dart';
@@ -13,7 +14,6 @@ import 'package:flutter_template/presentation/widgets/convenient/AppLoadingWidge
  */
 abstract class BaseBlocWidget<TargetBloc extends BaseBloc>
     extends BaseStatefulWidget {
-
   const BaseBlocWidget({Key key}) : super(key: key);
 
   @override
@@ -37,7 +37,6 @@ abstract class BaseBlocWidgetState<
         TargetModel extends BaseModel>
     extends BaseStatefulWidgetState<TargetWidget>
     with BlocMixin<TargetBloc, TargetEvent, TargetModel> {
-
   BaseBlocWidgetState() : super() {
     this.initMixin(autocall: this.isAutocall(), bloc: this.getBlocInstance());
   }
@@ -65,13 +64,12 @@ abstract class BaseBlocWidgetState<
   }
 
   @override
-  Widget buildLoading(BuildContext cntxt) =>
-      Stack(
+  Widget buildLoading(BuildContext cntxt) => Stack(
         children: [this.buildInitial(cntxt), AppLoadingWidget()],
       );
 
   @override
-  Widget buildError(BuildContext cntxt) {
+  Widget buildError(BuildContext cntxt, ErrorModel err) {
     return AppErrorWidget();
   }
 

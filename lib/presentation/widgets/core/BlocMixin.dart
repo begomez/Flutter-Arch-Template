@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/common/models/ErrorModel.dart';
 import 'package:flutter_template/common/models/core/BaseModel.dart';
 import 'package:flutter_template/common/models/result/ResourceResult.dart';
 import 'package:flutter_template/domain/bloc/core/BaseBloc.dart';
@@ -14,12 +15,8 @@ import 'package:flutter_template/domain/event/core/BaseEvent.dart';
  * - TargetEvent: data type for the event used as bloc input
  * - TargetModel: data type for the model returned by bloc
  */
-mixin BlocMixin<
-    TargetBloc extends BaseBloc,
-    TargetEvent extends BaseEvent,
-    TargetModel extends BaseModel
-    > {
-
+mixin BlocMixin<TargetBloc extends BaseBloc, TargetEvent extends BaseEvent,
+    TargetModel extends BaseModel> {
   TargetBloc _bloc = null;
   bool _autocall = false;
 
@@ -40,7 +37,6 @@ mixin BlocMixin<
 
     // BLOC initialized
     if (this.hasBloc()) {
-
       // show loading
       this._bloc.processResult(
           ResourceResult<TargetModel>(status: ResourceStatus.LOADING));
@@ -48,7 +44,7 @@ mixin BlocMixin<
       // perform operation
       this._bloc.performOperation(dto);
 
-    // NO BLOC available
+      // NO BLOC available
     } else {
       throw UnimplementedError("No bloc available in mixin");
     }
@@ -66,7 +62,7 @@ mixin BlocMixin<
               case ResourceStatus.LOADING:
                 return this.buildLoading(context);
               case ResourceStatus.ERROR:
-                return this.buildError(context);
+                return this.buildError(context, snap.error);
               case ResourceStatus.SUCCESS:
                 return this.buildSuccess(context, snap.data.data);
               case ResourceStatus.INITIAL:
@@ -86,7 +82,7 @@ mixin BlocMixin<
   /*
    * Returns widget to show when bloc fails
    */
-  Widget buildError(BuildContext cntxt);
+  Widget buildError(BuildContext cntxt, ErrorModel err);
 
   /*
    * Returns widget to show when idle

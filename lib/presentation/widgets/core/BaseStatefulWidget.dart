@@ -23,10 +23,9 @@ abstract class BaseStatefulWidgetState<T extends BaseStatefulWidget>
     return this.buildWidgetContents(context);
   }
 
-  /**
-   * Returns widget contents.
-   * 
-   * Must be overriden by children
-   */
+  ///
+  /// Returns widget contents.
+  /// Must be overriden by children
+  ///
   Widget buildWidgetContents(BuildContext context);
 }

@@ -6,7 +6,6 @@ import 'package:flutter_template/presentation/screens/core/BaseStatelessScreen.d
  * Initial/launch screen
  */
 class SplashScreen extends BaseStatelessScreen {
-
   const SplashScreen({String title = "", Key? key})
       : super(title: title, key: key);
 
@@ -21,9 +20,9 @@ class SplashScreen extends BaseStatelessScreen {
   }
 
   void _navigateDelayed(BuildContext cntxt) async {
-    final int DELAY_IN_SECS = 2;
+    final int delaySecs = 2;
 
-    await Future.delayed(Duration(seconds: DELAY_IN_SECS))
+    await Future.delayed(Duration(seconds: delaySecs))
         .then((value) async => await AppNavigator.toLogin(cntxt));
   }
 }

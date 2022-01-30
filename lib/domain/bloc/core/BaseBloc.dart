@@ -33,9 +33,9 @@ abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
       final Output data = await this.processEvent(event);
 
       result = this.buildResult(data: data);
-    } on DataException catch (de) {
+    } on DataException {
       result = this.buildResult(data: null, errorCode: ErrorCodes.DATA_ERROR);
-    } on Exception catch (e) {
+    } on Exception {
       result = this.buildResult(data: null, errorCode: this.getErrorCode());
     } finally {
       this.processResult(result);

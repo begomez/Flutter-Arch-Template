@@ -13,9 +13,7 @@ class BlocProvider<TargetBloc extends BaseBloc?> extends StatefulWidget {
   final TargetBloc bloc;
 
   const BlocProvider({required this.child, required this.bloc, Key? key})
-      : assert(child != null),
-        assert(bloc != null),
-        super(key: key);
+      : super(key: key);
 
   static TargetBloc of<TargetBloc extends BaseBloc>(BuildContext cntxt) {
     final candidate =

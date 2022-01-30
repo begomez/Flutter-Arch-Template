@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_template/common/models/core/BaseModel.dart';
 
 /*
@@ -11,10 +10,7 @@ class UserSessionModel extends BaseModel {
 
   const UserSessionModel(
       {required this.name, required this.mail, required this.token})
-      : assert(name != null),
-        assert(mail != null),
-        assert(token != null),
-        super();
+      : super();
 
   factory UserSessionModel.invalid() =>
       UserSessionModel(name: "", mail: "", token: "");

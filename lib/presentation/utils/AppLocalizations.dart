@@ -22,8 +22,8 @@ extension LangCodesExtension on LangCodes {
  * Translations manager
  */
 class AppLocalizations {
-  static final String DIR = "i18n/";
-  static final String EXTENSION = ".json";
+  static final String dir = "i18n/";
+  static final String ext = ".json";
   static final AppLocalizationsDelegate delegate = AppLocalizationsDelegate();
 
   Locale? locale;
@@ -35,8 +35,8 @@ class AppLocalizations {
       Localizations.of<AppLocalizations>(cntxt, AppLocalizations);
 
   Future<AppLocalizations> load() async {
-    final json = await rootBundle
-        .loadString("$DIR${this.locale!.languageCode}$EXTENSION");
+    final json =
+        await rootBundle.loadString("$dir${this.locale!.languageCode}$ext");
 
     Map<String, dynamic> texts = jsonDecode(json);
 

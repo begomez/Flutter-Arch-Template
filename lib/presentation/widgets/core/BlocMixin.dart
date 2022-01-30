@@ -17,13 +17,12 @@ import 'package:flutter_template/domain/event/core/BaseEvent.dart';
  */
 mixin BlocMixin<TargetBloc extends BaseBloc, TargetEvent extends BaseEvent,
     TargetModel extends BaseModel> {
-  TargetBloc? _bloc = null;
-  bool _autocall = false;
+  TargetBloc? _bloc;
+  bool? _autocall;
 
   //XXX: must be invoked since mixins have no constructors
-  void initMixin({required TargetBloc bloc, required bool autocall}) {
+  void initMixin({required TargetBloc? bloc, bool autocall = false}) {
     assert(bloc != null);
-    assert(autocall != null);
 
     this._bloc = bloc;
     this._autocall = autocall;
@@ -58,7 +57,7 @@ mixin BlocMixin<TargetBloc extends BaseBloc, TargetEvent extends BaseEvent,
         child: StreamBuilder<ResourceResult<TargetModel>?>(
           stream: this._bloc!.output as Stream<ResourceResult<TargetModel>?>?,
           builder: (context, snap) {
-            switch (snap?.data?.status) {
+            switch (snap.data?.status) {
               case ResourceStatus.LOADING:
                 return this.buildLoading(context);
               case ResourceStatus.ERROR:

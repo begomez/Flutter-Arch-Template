@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_template/common/models/MessageModel.dart';
 import 'package:flutter_template/network/response/core/BaseResponse.dart';
 
@@ -10,7 +9,5 @@ class LogoutResponse extends BaseResponse {
   final MessageModel msg;
 
   const LogoutResponse({required this.flag, this.msg = const MessageModel()})
-      : assert(flag != null),
-        assert(msg != null),
-        super();
+      : super();
 }

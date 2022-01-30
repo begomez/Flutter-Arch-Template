@@ -18,7 +18,8 @@ class BlocProvider<TargetBloc extends BaseBloc?> extends StatefulWidget {
         super(key: key);
 
   static TargetBloc of<TargetBloc extends BaseBloc>(BuildContext cntxt) {
-    final candidate = cntxt.findAncestorWidgetOfExactType<BlocProvider<TargetBloc>>()!;
+    final candidate =
+        cntxt.findAncestorWidgetOfExactType<BlocProvider<TargetBloc>>()!;
 
     return candidate.bloc;
   }
@@ -40,7 +41,7 @@ class _BlocProviderState extends State<BlocProvider> {
 
   @override
   void dispose() {
-    this.widget.bloc.dispose();
+    this.widget.bloc?.dispose();
 
     super.dispose();
   }

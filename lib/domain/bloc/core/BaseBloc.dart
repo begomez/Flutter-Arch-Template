@@ -7,7 +7,6 @@ import 'package:flutter_template/data/exception/DataException.dart';
 import 'package:flutter_template/domain/ErrorCodes.dart';
 import 'package:flutter_template/domain/event/core/BaseEvent.dart';
 
-
 /*
  * Superclass for BLoC derived classes
  * 
@@ -17,7 +16,6 @@ import 'package:flutter_template/domain/event/core/BaseEvent.dart';
  * - Output: data model type used as bloc output/result
  */
 abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
-
   StreamController<ResourceResult<Output>?> _controller =
       StreamController<ResourceResult<Output>?>();
 
@@ -35,7 +33,6 @@ abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
       final Output data = await this.processEvent(event);
 
       result = this.buildResult(data: data);
-
     } on DataException catch (de) {
       result = this.buildResult(data: null, errorCode: ErrorCodes.DATA_ERROR);
     } on Exception catch (e) {
@@ -68,7 +65,7 @@ abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
    */
   void processResult(ResourceResult? result) {
     if (!this._controller.isClosed) {
-      this.input.add(result as ResourceResult<Output*>?);
+      this.input.add(result as ResourceResult<Output>?);
     }
   }
 
@@ -89,10 +86,11 @@ abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
    * @param data Data returned by the operation performed in the bloc
    * @param errorCode Possible error code launched when performing the operation
    */
-  ResourceResult<Output> buildResult({Output? data, int errorCode = ErrorCodes.INVALID}) {
-
-    ErrorModel? err = (errorCode >= 0)? ErrorModel(code: errorCode) : null;
-    ResourceStatus status = (data != null)? ResourceStatus.SUCCESS : ResourceStatus.ERROR;
+  ResourceResult<Output> buildResult(
+      {Output? data, int errorCode = ErrorCodes.INVALID}) {
+    ErrorModel? err = (errorCode >= 0) ? ErrorModel(code: errorCode) : null;
+    ResourceStatus status =
+        (data != null) ? ResourceStatus.SUCCESS : ResourceStatus.ERROR;
 
     return ResourceResult<Output>(data: data, error: err, status: status);
   }

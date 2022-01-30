@@ -15,14 +15,14 @@ abstract class WidgetFactory {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text(AppLocalizations.of(context).translate("app_name")),
+            title: Text(AppLocalizations.of(context)!.translate("app_name")!),
             actions: <Widget>[
               ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
                   child: Text(
-                      AppLocalizations.of(context).translate("action_no"))),
+                      AppLocalizations.of(context)!.translate("action_no")!)),
               ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pop();
@@ -33,7 +33,7 @@ abstract class WidgetFactory {
                     AppNavigator.toLogin(context);
                   },
                   child: Text(
-                      AppLocalizations.of(context).translate("action_yes")))
+                      AppLocalizations.of(context)!.translate("action_yes")!))
             ],
           );
         });
@@ -41,9 +41,9 @@ abstract class WidgetFactory {
 
   static Widget buildBtn(
       {Color color = AppColors.accent,
-      @required String text,
-      @required Function callback,
-      @required TextStyle style}) {
+      required String text,
+      required Function callback,
+      required TextStyle style}) {
     return Container(
       width: double.maxFinite,
       child: MaterialButton(

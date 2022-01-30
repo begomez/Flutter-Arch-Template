@@ -6,13 +6,13 @@ import 'package:flutter_template/presentation/widgets/core/BaseStatelessWidget.d
  * Widget displayed when error
  */
 class AppErrorWidget extends BaseStatelessWidget {
-  const AppErrorWidget({Key key}) : super(key: key);
+  const AppErrorWidget({Key? key}) : super(key: key);
 
   @override
   Widget buildWidgetContents(BuildContext context) {
     return Container(
       alignment: Alignment.center,
-      child: Text(AppLocalizations.of(context).translate("screen_error")),
+      child: Text(AppLocalizations.of(context)!.translate("screen_error")!),
     );
   }
 }

@@ -26,17 +26,17 @@ class AppLocalizations {
   static final String EXTENSION = ".json";
   static final AppLocalizationsDelegate delegate = AppLocalizationsDelegate();
 
-  Locale locale;
+  Locale? locale;
   Map<String, String> translations;
 
   AppLocalizations({this.locale, this.translations = const {}});
 
-  static AppLocalizations of(BuildContext cntxt) =>
+  static AppLocalizations? of(BuildContext cntxt) =>
       Localizations.of<AppLocalizations>(cntxt, AppLocalizations);
 
   Future<AppLocalizations> load() async {
     final json = await rootBundle
-        .loadString("$DIR${this.locale.languageCode}$EXTENSION");
+        .loadString("$DIR${this.locale!.languageCode}$EXTENSION");
 
     Map<String, dynamic> texts = jsonDecode(json);
 
@@ -46,7 +46,7 @@ class AppLocalizations {
     return this;
   }
 
-  String translate(String key) {
+  String? translate(String key) {
     if (this.translations.containsKey(key)) {
       return this.translations[key];
     } else {

@@ -8,7 +8,7 @@ class LoginEvent extends BaseEvent {
   final String user;
   final String pass;
 
-  const LoginEvent({@required this.user, @required this.pass})
+  const LoginEvent({required this.user, required this.pass})
       : assert(user != null),
         assert(pass != null),
         super();

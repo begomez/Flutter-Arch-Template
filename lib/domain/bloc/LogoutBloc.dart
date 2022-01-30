@@ -10,7 +10,7 @@ import 'package:flutter_template/domain/repo/ILoginRepository.dart';
  * BLoC used to perform logout operation
  */
 class LogoutBloc extends BaseBloc<LogoutEvent, BooleanWrapper> {
-  ILoginRepository _repo;
+  late ILoginRepository _repo;
 
   LogoutBloc(ILoginApi api) : super() {
     this._repo = LoginRepositoryImpl(api: api);

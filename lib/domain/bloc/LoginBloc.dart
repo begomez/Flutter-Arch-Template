@@ -10,7 +10,7 @@ import 'package:flutter_template/domain/repo/ILoginRepository.dart';
  * BLoC used to perform login operation
  */
 class LoginBloc extends BaseBloc<LoginEvent, UserSessionModel> {
-  ILoginRepository _repo;
+  late ILoginRepository _repo;
 
   LoginBloc(ILoginApi api) : super() {
     this._repo = LoginRepositoryImpl(api: api);

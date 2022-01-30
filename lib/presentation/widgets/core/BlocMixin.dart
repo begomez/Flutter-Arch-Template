@@ -17,11 +17,11 @@ import 'package:flutter_template/domain/event/core/BaseEvent.dart';
  */
 mixin BlocMixin<TargetBloc extends BaseBloc, TargetEvent extends BaseEvent,
     TargetModel extends BaseModel> {
-  TargetBloc _bloc = null;
+  TargetBloc? _bloc = null;
   bool _autocall = false;
 
   //XXX: must be invoked since mixins have no constructors
-  void initMixin({@required TargetBloc bloc, @required bool autocall}) {
+  void initMixin({required TargetBloc bloc, required bool autocall}) {
     assert(bloc != null);
     assert(autocall != null);
 
@@ -38,11 +38,11 @@ mixin BlocMixin<TargetBloc extends BaseBloc, TargetEvent extends BaseEvent,
     // BLOC initialized
     if (this.hasBloc()) {
       // show loading
-      this._bloc.processResult(
+      this._bloc!.processResult(
           ResourceResult<TargetModel>(status: ResourceStatus.LOADING));
 
       // perform operation
-      this._bloc.performOperation(dto);
+      this._bloc!.performOperation(dto);
 
       // NO BLOC available
     } else {
@@ -55,16 +55,16 @@ mixin BlocMixin<TargetBloc extends BaseBloc, TargetEvent extends BaseEvent,
    */
   Widget buildWidgetAccordingToState(BuildContext context) {
     return BlocProvider(
-        child: StreamBuilder<ResourceResult<TargetModel>>(
-          stream: this._bloc.output,
+        child: StreamBuilder<ResourceResult<TargetModel>?>(
+          stream: this._bloc!.output as Stream<ResourceResult<TargetModel>?>?,
           builder: (context, snap) {
             switch (snap?.data?.status) {
               case ResourceStatus.LOADING:
                 return this.buildLoading(context);
               case ResourceStatus.ERROR:
-                return this.buildError(context, snap.error);
+                return this.buildError(context, snap.error as ErrorModel?);
               case ResourceStatus.SUCCESS:
-                return this.buildSuccess(context, snap.data.data);
+                return this.buildSuccess(context, snap.data!.data);
               case ResourceStatus.INITIAL:
               default:
                 return this.buildInitial(context);
@@ -82,7 +82,7 @@ mixin BlocMixin<TargetBloc extends BaseBloc, TargetEvent extends BaseEvent,
   /*
    * Returns widget to show when bloc fails
    */
-  Widget buildError(BuildContext cntxt, ErrorModel err);
+  Widget buildError(BuildContext cntxt, ErrorModel? err);
 
   /*
    * Returns widget to show when idle
@@ -92,7 +92,7 @@ mixin BlocMixin<TargetBloc extends BaseBloc, TargetEvent extends BaseEvent,
   /*
    * Returns widget to show when operations finishes with no error
    */
-  Widget buildSuccess(BuildContext cntxt, TargetModel data);
+  Widget buildSuccess(BuildContext cntxt, TargetModel? data);
 
   /*
    * Returns object used as bloc input.

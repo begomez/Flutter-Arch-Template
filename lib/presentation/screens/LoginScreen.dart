@@ -10,7 +10,7 @@ import 'package:flutter_template/presentation/widgets/LoginButtonWidget.dart';
  */
 class LoginScreen extends BaseStatelessScreen {
 
-  const LoginScreen({String title = "", Key key})
+  const LoginScreen({String title = "", Key? key})
       : super(title: title, key: key);
 
   @override
@@ -24,7 +24,7 @@ class LoginScreen extends BaseStatelessScreen {
           Padding(
             padding: const EdgeInsets.only(top: _Dimens.PADDING_TOP),
             child: Text(
-              AppLocalizations.of(context).translate("app_name"),
+              AppLocalizations.of(context)!.translate("app_name")!,
               style: AppStyles.title,
             ),
           ),

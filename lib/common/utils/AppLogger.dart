@@ -9,7 +9,7 @@ abstract class AppLogger {
     if (LOG_INFO) print("$tag $msg");
   }
 
-  static void e({String tag = TAG, String msg = "", Exception error}) {
+  static void e({String tag = TAG, String msg = "", Exception? error}) {
     print("$tag $msg");
     if (error != null) {
       print(error.toString());

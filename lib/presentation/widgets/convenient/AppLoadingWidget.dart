@@ -6,7 +6,7 @@ import 'package:flutter_template/presentation/widgets/core/BaseStatelessWidget.d
  * Widget displayed when loading
  */
 class AppLoadingWidget extends BaseStatelessWidget {
-  const AppLoadingWidget({Key key}) : super(key: key);
+  const AppLoadingWidget({Key? key}) : super(key: key);
 
   @override
   Widget buildWidgetContents(BuildContext context) {

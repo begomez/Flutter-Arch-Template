@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
  * When needing BLoC usage, see BaseBlocWidget
  */
 abstract class BaseStatefulWidget extends StatefulWidget {
-  const BaseStatefulWidget({Key key}) : super(key: key);
+  const BaseStatefulWidget({Key? key}) : super(key: key);
 
   @override
   BaseStatefulWidgetState createState();

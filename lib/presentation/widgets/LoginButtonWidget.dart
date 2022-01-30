@@ -14,7 +14,7 @@ import 'package:flutter_template/presentation/widgets/factory/WidgetFactory.dart
  * Widget that performs login using credentials
  */
 class LoginButtonWidget extends BaseBlocWidget<LoginBloc> {
-  const LoginButtonWidget({Key key}) : super(key: key);
+  const LoginButtonWidget({Key? key}) : super(key: key);
 
   @override
   _LoginButtonWidgetState createState() => _LoginButtonWidgetState();
@@ -49,14 +49,14 @@ class _LoginButtonWidgetState
   Widget buildInitial(BuildContext cntxt) => this._buildBtn(cntxt);
 
   @override
-  Widget buildSuccess(BuildContext cntxt, UserSessionModel user) {
+  Widget buildSuccess(BuildContext cntxt, UserSessionModel? user) {
     this._navigateToHome(cntxt);
 
     return this._buildBtn(cntxt);
   }
 
   void _navigateToHome(BuildContext cntxt) {
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
+    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
       await AppNavigator.toHome(cntxt);
     });
   }
@@ -65,7 +65,7 @@ class _LoginButtonWidgetState
     return WidgetFactory.buildBtn(
         color: AppColors.accent,
         style: AppStyles.action,
-        text: AppLocalizations.of(cntxt).translate("action_login"),
+        text: AppLocalizations.of(cntxt)!.translate("action_login")!,
         callback: () async {
           this.call();
         });

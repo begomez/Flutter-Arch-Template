@@ -9,7 +9,7 @@ class LoginApiImpl implements ILoginApi {
   const LoginApiImpl();
 
   @override
-  Future<LoginResponse> login({String user, String pass}) {
+  Future<LoginResponse> login({String? user, String? pass}) {
     //TODO:
     throw UnimplementedError();
   }

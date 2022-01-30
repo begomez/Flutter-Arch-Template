@@ -18,8 +18,8 @@ import 'package:flutter_template/domain/event/core/BaseEvent.dart';
  */
 abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
 
-  StreamController<ResourceResult<Output>> _controller =
-      StreamController<ResourceResult<Output>>();
+  StreamController<ResourceResult<Output>?> _controller =
+      StreamController<ResourceResult<Output>?>();
 
   BaseBloc();
 
@@ -32,7 +32,7 @@ abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
   void performOperation(Input event) async {
     var result;
     try {
-      final data = await this.processEvent(event);
+      final Output data = await this.processEvent(event);
 
       result = this.buildResult(data: data);
 
@@ -66,9 +66,9 @@ abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
    * 
    * @param result
    */
-  void processResult(ResourceResult result) {
+  void processResult(ResourceResult? result) {
     if (!this._controller.isClosed) {
-      this.input.add(result);
+      this.input.add(result as ResourceResult<Output*>?);
     }
   }
 
@@ -89,9 +89,9 @@ abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
    * @param data Data returned by the operation performed in the bloc
    * @param errorCode Possible error code launched when performing the operation
    */
-  ResourceResult<Output> buildResult({Output data, int errorCode = ErrorCodes.INVALID}) {
+  ResourceResult<Output> buildResult({Output? data, int errorCode = ErrorCodes.INVALID}) {
 
-    ErrorModel err = (errorCode >= 0)? ErrorModel(code: errorCode) : null;
+    ErrorModel? err = (errorCode >= 0)? ErrorModel(code: errorCode) : null;
     ResourceStatus status = (data != null)? ResourceStatus.SUCCESS : ResourceStatus.ERROR;
 
     return ResourceResult<Output>(data: data, error: err, status: status);
@@ -100,10 +100,10 @@ abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
   /*
    * Stream accessor
    */
-  Stream<ResourceResult<Output>> get output => this._controller.stream;
+  Stream<ResourceResult<Output>?> get output => this._controller.stream;
 
   /*
    * Sink accessor
    */
-  StreamSink<ResourceResult<Output>> get input => this._controller.sink;
+  StreamSink<ResourceResult<Output>?> get input => this._controller.sink;
 }

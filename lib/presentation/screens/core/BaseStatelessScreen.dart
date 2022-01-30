@@ -7,7 +7,7 @@ import 'package:flutter_template/presentation/screens/core/ScreenMixin.dart';
 abstract class BaseStatelessScreen extends StatelessWidget with ScreenMixin {
   final String title;
 
-  const BaseStatelessScreen({this.title = "", Key key}) : super(key: key);
+  const BaseStatelessScreen({this.title = "", Key? key}) : super(key: key);
 
   // See ScreenMixin
 
@@ -17,5 +17,5 @@ abstract class BaseStatelessScreen extends StatelessWidget with ScreenMixin {
   }
 
   @override
-  String getScreenTitle(BuildContext cntxt) => this.title;
+  String? getScreenTitle(BuildContext cntxt) => this.title;
 }

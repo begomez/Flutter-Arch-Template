@@ -10,7 +10,7 @@ class UserSessionModel extends BaseModel {
   final String token;
 
   const UserSessionModel(
-      {@required this.name, @required this.mail, @required this.token})
+      {required this.name, required this.mail, required this.token})
       : assert(name != null),
         assert(mail != null),
         assert(token != null),

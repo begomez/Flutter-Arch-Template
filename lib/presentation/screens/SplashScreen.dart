@@ -7,7 +7,7 @@ import 'package:flutter_template/presentation/screens/core/BaseStatelessScreen.d
  */
 class SplashScreen extends BaseStatelessScreen {
 
-  const SplashScreen({String title = "", Key key})
+  const SplashScreen({String title = "", Key? key})
       : super(title: title, key: key);
 
   @override

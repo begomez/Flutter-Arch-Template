@@ -9,7 +9,7 @@ class LogoutResponse extends BaseResponse {
   final bool flag;
   final MessageModel msg;
 
-  const LogoutResponse({@required this.flag, this.msg = const MessageModel()})
+  const LogoutResponse({required this.flag, this.msg = const MessageModel()})
       : assert(flag != null),
         assert(msg != null),
         super();

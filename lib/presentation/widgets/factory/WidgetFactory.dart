@@ -42,7 +42,7 @@ abstract class WidgetFactory {
   static Widget buildBtn(
       {Color color = AppColors.accent,
       required String text,
-      required Function callback,
+      required Function() callback,
       required TextStyle style}) {
     return Container(
       width: double.maxFinite,

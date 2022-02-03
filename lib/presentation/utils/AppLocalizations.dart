@@ -24,12 +24,15 @@ extension LangCodesExtension on LangCodes {
 class AppLocalizations {
   static final String dir = "i18n/";
   static final String ext = ".json";
-  static final AppLocalizationsDelegate delegate = AppLocalizationsDelegate();
 
-  Locale? locale;
+  final Locale? locale;
   Map<String, String> translations;
+  final AppLocalizationsDelegate delegate;
 
-  AppLocalizations({this.locale, this.translations = const {}});
+  AppLocalizations(
+      {this.locale,
+      this.translations = const {},
+      this.delegate = const AppLocalizationsDelegate()});
 
   static AppLocalizations? of(BuildContext cntxt) =>
       Localizations.of<AppLocalizations>(cntxt, AppLocalizations);

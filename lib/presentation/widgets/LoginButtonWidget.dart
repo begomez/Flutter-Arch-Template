@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/common/models/UserSessionModel.dart';
+import 'package:flutter_template/data/repo/LoginRepositoryImpl.dart';
 import 'package:flutter_template/domain/bloc/LoginBloc.dart';
 import 'package:flutter_template/domain/event/LoginEvent.dart';
 import 'package:flutter_template/network/fake/FakeLoginApiImpl.dart';
@@ -23,13 +24,8 @@ class LoginButtonWidget extends BaseBlocWidget<LoginBloc> {
 /*
  * Companion state class
  */
-class _LoginButtonWidgetState
-    extends BaseBlocWidgetState<
-        LoginButtonWidget,
-        LoginBloc,
-        LoginEvent,
-        UserSessionModel> {
-
+class _LoginButtonWidgetState extends BaseBlocWidgetState<LoginButtonWidget,
+    LoginBloc, LoginEvent, UserSessionModel> {
   _LoginButtonWidgetState() : super();
 
   @override
@@ -39,7 +35,7 @@ class _LoginButtonWidgetState
 
   @override
   LoginBloc getBlocInstance() {
-    return LoginBloc(FakeLoginApiImpl());
+    return LoginBloc(LoginRepositoryImpl(api: FakeLoginApiImpl()));
   }
 
   @override

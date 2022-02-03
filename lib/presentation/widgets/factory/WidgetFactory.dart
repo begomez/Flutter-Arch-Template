@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/data/repo/LoginRepositoryImpl.dart';
 import 'package:flutter_template/domain/bloc/LogoutBloc.dart';
 import 'package:flutter_template/domain/event/LogoutEvent.dart';
 import 'package:flutter_template/network/fake/FakeLoginApiImpl.dart';
@@ -27,7 +28,7 @@ abstract class WidgetFactory {
                   onPressed: () {
                     Navigator.of(context).pop();
 
-                    LogoutBloc(FakeLoginApiImpl())
+                    LogoutBloc(LoginRepositoryImpl(api: FakeLoginApiImpl()))
                         .performOperation(LogoutEvent());
 
                     AppNavigator.toLogin(context);

@@ -24,7 +24,7 @@ class MainApp extends StatelessWidget {
         supportedLocales:
             LangCodes.values.map((LangCodes e) => Locale(e.toCode())).toList(),
         localizationsDelegates: [
-          AppLocalizations.delegate,
+          AppLocalizationsDelegate(),
           GlobalWidgetsLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
           GlobalCupertinoLocalizations.delegate,
@@ -33,7 +33,6 @@ class MainApp extends StatelessWidget {
           Routes.splash: (cntxt) => SplashScreen(title: ""),
           Routes.login: (cntxt) => LoginScreen(title: ""),
           Routes.home: (cntxt) => HomeScreen(title: "")
-        }
-      );
+        });
   }
 }

@@ -16,7 +16,8 @@ import 'package:flutter_template/domain/event/core/BaseEvent.dart';
  * - Output: data model type used as bloc output/result
  */
 abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
-  StreamController<ResourceResult<Output>?> _controller =
+  // ignore: close_sinks
+  final StreamController<ResourceResult<Output>?> _controller =
       StreamController<ResourceResult<Output>?>();
 
   BaseBloc();

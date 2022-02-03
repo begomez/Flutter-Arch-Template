@@ -3,6 +3,6 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test('When creating logout event then data is stored properly', () {
-    assert(LogoutEvent() != null);
+    assert(LogoutEvent().hashCode == LogoutEvent().hashCode);
   });
 }

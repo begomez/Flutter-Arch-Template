@@ -1,7 +1,5 @@
 import 'package:flutter_template/common/factory/FakeModelFactory.dart';
-import 'package:flutter_template/data/repo/LoginRepositoryImpl.dart';
 import 'package:flutter_template/domain/ErrorCodes.dart';
-import 'package:flutter_template/domain/bloc/LoginBloc.dart';
 import 'package:flutter_template/domain/bloc/LogoutBloc.dart';
 import 'package:flutter_template/domain/event/LogoutEvent.dart';
 import 'package:flutter_template/domain/repo/ILoginRepository.dart';

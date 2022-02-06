@@ -25,7 +25,7 @@ void main() {
 
     final result = await bloc.processEvent(event);
 
-    assert(expected, result.flag);
+    expect(expected, result.flag);
 
     verify(() => repo.logout()).called(1);
   });

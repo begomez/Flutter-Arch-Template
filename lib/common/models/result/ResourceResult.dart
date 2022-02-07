@@ -17,7 +17,8 @@ class ResourceResult<TargetData> {
   final ErrorModel? error;
   final ResourceStatus status;
 
-  const ResourceResult({this.data, this.error, this.status = ResourceStatus.INITIAL});
+  const ResourceResult(
+      {this.data, this.error, this.status = ResourceStatus.INITIAL});
 
   bool hasData() => this.data != null;
 

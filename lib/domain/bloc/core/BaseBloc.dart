@@ -28,7 +28,7 @@ abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
    * 
    * @param dto
    */
-  void performOperation(Input event) async {
+  Future<void> performOperation(Input event) async {
     var result;
     try {
       final Output data = await this.processEvent(event);

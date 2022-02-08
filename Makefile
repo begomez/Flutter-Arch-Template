@@ -19,7 +19,7 @@ clean:
 coverage:
 	@rm -rf coverage
 	@flutter test --coverage
-	@lcov --remove coverage/lcov.info "***/widget*/**" "***/page*/**" "***/constants*/**" "lib/core/**" "lib/di/**" "lib/debug/**" "lib/routes/**" "lib/ui/styles/**" "**/*.g.dart" "**/*.freezed.dart" "**/fake*.dart"  -o coverage/lcov_cleaned.info
+	@lcov --remove coverage/lcov.info "***/constants*/**" "**/*.g.dart" "**/fake*.dart"  -o coverage/lcov_cleaned.info
 	@genhtml coverage/lcov_cleaned.info -o coverage/html
 	@open coverage/html/index.html
 

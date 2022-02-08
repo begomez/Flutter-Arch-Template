@@ -3,7 +3,7 @@ import 'package:flutter_template/presentation/widgets/convenient/AppLoadingWidge
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  testWidgets('When building loading then widget is drawn', (tester) async {
+  testWidgets('When loading created then widget is displayed', (tester) async {
     await tester.pumpWidget(AppLoadingWidget());
 
     expect(find.byType(CircularProgressIndicator), findsOneWidget);

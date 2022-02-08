@@ -1,21 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:flutter_template/presentation/screens/HomeScreen.dart';
 import 'package:flutter_template/presentation/utils/AppLocalizations.dart';
+import 'package:flutter_template/presentation/widgets/convenient/AppErrorWidget.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test("When building obj then title is stored", () {
-    assert(HomeScreen(
-          title: "home title",
-        ).title ==
-        "home title");
-  });
-
-  testWidgets('When home screen requested then screen is loaded',
-      (tester) async {
+  testWidgets('When error created then widget is displayed', (tester) async {
     await tester.pumpWidget(MaterialApp(
-      home: HomeScreen(),
+      home: AppErrorWidget(),
       locale: Locale('en'),
       localizationsDelegates: [
         AppLocalizationsDelegate(testing: true),
@@ -24,8 +16,8 @@ void main() {
         GlobalCupertinoLocalizations.delegate,
       ],
     ));
-    await tester.pumpAndSettle(); //XXX: for localizations
+    await tester.pumpAndSettle();
 
-    expect(find.byType(WillPopScope), findsOneWidget);
+    expect(find.text("screen_error"), findsOneWidget);
   });
 }

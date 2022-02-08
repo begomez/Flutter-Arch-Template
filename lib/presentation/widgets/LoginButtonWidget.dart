@@ -18,15 +18,16 @@ class LoginButtonWidget extends BaseBlocWidget<LoginBloc> {
   const LoginButtonWidget({Key? key}) : super(key: key);
 
   @override
-  _LoginButtonWidgetState createState() => _LoginButtonWidgetState();
+  LoginButtonWidgetState createState() => LoginButtonWidgetState();
 }
 
 /*
  * Companion state class
  */
-class _LoginButtonWidgetState extends BaseBlocWidgetState<LoginButtonWidget,
+@visibleForTesting
+class LoginButtonWidgetState extends BaseBlocWidgetState<LoginButtonWidget,
     LoginBloc, LoginEvent, UserSessionModel> {
-  _LoginButtonWidgetState() : super();
+  LoginButtonWidgetState() : super();
 
   @override
   LoginEvent getEvent() {

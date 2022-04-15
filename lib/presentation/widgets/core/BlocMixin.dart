@@ -22,8 +22,6 @@ mixin BlocMixin<TargetBloc extends BaseBloc, TargetEvent extends BaseEvent,
 
   //XXX: must be invoked since mixins have no constructors
   void initMixin({required TargetBloc? bloc, bool autocall = false}) {
-    assert(bloc != null);
-
     this._bloc = bloc;
     this._autocall = autocall;
   }

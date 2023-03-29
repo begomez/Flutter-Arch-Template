@@ -20,7 +20,7 @@ import 'package:flutter_template/domain/event/core/BaseEvent.dart';
 mixin BlocMixin<TargetBloc extends BaseBloc, TargetEvent extends BaseEvent,
     TargetModel extends BaseModel> {
   TargetBloc? _bloc;
-  bool? _autocall;
+  bool _autocall = false;
 
   //XXX: must be invoked since mixins have no constructors
   void initMixin({required TargetBloc? bloc, bool autocall = false}) {

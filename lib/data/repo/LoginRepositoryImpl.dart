@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_template/common/models/UserSessionModel.dart';
 import 'package:flutter_template/common/utils/AppLogger.dart';
 import 'package:flutter_template/data/api/ILoginApi.dart';
@@ -15,15 +14,14 @@ const String TAG = "LoginRepositoryImpl";
 class LoginRepositoryImpl extends ILoginRepository {
   final ILoginApi api;
 
-  const LoginRepositoryImpl({@required this.api}) : assert(api != null);
+  const LoginRepositoryImpl({required this.api});
 
   @override
-  Future<UserSessionModel> login({String user, String pass}) async {
+  Future<UserSessionModel> login({String? user, String? pass}) async {
     try {
       final result = await this.api.login(user: user, pass: pass);
 
       return result.user;
-
     } on Exception catch (e) {
       AppLogger.e(tag: TAG, msg: "login()", error: e);
 
@@ -37,7 +35,6 @@ class LoginRepositoryImpl extends ILoginRepository {
       final result = await this.api.logout();
 
       return result.flag;
-
     } on Exception catch (e) {
       AppLogger.e(tag: TAG, msg: "logout()", error: e);
 

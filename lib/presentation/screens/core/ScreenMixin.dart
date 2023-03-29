@@ -12,7 +12,7 @@ mixin ScreenMixin {
    */
   Widget buildScreen(BuildContext context) {
     return Scaffold(
-      appBar: this.buildScreenAppBar(context),
+      appBar: this.buildScreenAppBar(context) as PreferredSizeWidget?,
       body: SafeArea(child: this.buildScreenContents(context)),
     );
   }
@@ -22,8 +22,8 @@ mixin ScreenMixin {
    *
    * Can be overriden by children if needed
    */
-  Widget buildScreenAppBar(BuildContext cntxt) {
-    final title = this.getScreenTitle(cntxt);
+  Widget? buildScreenAppBar(BuildContext cntxt) {
+    final title = this.getScreenTitle(cntxt)!;
 
     if (title.isNotEmpty) {
       return AppBar(
@@ -41,7 +41,7 @@ mixin ScreenMixin {
    *
    * Can be overriden by children.
    */
-  String getScreenTitle(BuildContext cntxt);
+  String? getScreenTitle(BuildContext cntxt);
 
   /*
    * Accessor that returns a flag to show/hide back button on app bar.

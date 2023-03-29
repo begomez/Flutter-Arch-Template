@@ -13,11 +13,12 @@ enum ResourceStatus { INITIAL, LOADING, SUCCESS, ERROR }
  * - TargetData: data type for data model wrapped in the result
  */
 class ResourceResult<TargetData> {
-  final TargetData data;
-  final ErrorModel error;
+  final TargetData? data;
+  final ErrorModel? error;
   final ResourceStatus status;
 
-  const ResourceResult({this.data, this.error, this.status = ResourceStatus.INITIAL});
+  const ResourceResult(
+      {this.data, this.error, this.status = ResourceStatus.INITIAL});
 
   bool hasData() => this.data != null;
 

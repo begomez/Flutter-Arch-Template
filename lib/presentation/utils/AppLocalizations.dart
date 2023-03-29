@@ -22,21 +22,30 @@ extension LangCodesExtension on LangCodes {
  * Translations manager
  */
 class AppLocalizations {
-  static final String DIR = "i18n/";
-  static final String EXTENSION = ".json";
-  static final AppLocalizationsDelegate delegate = AppLocalizationsDelegate();
+  static final String dir = "i18n/";
+  static final String ext = ".json";
 
-  Locale locale;
+  final Locale? locale;
   Map<String, String> translations;
+  final AppLocalizationsDelegate delegate;
+  bool testing;
 
-  AppLocalizations({this.locale, this.translations = const {}});
+  AppLocalizations(
+      {this.locale,
+      this.translations = const {},
+      this.delegate = const AppLocalizationsDelegate(),
+      this.testing = false});
 
-  static AppLocalizations of(BuildContext cntxt) =>
+  static AppLocalizations? of(BuildContext cntxt) =>
       Localizations.of<AppLocalizations>(cntxt, AppLocalizations);
 
+  Future<AppLocalizations> loadTest(Locale locale) async {
+    return AppLocalizations(locale: locale);
+  }
+
   Future<AppLocalizations> load() async {
-    final json = await rootBundle
-        .loadString("$DIR${this.locale.languageCode}$EXTENSION");
+    final json =
+        await rootBundle.loadString("$dir${this.locale!.languageCode}$ext");
 
     Map<String, dynamic> texts = jsonDecode(json);
 
@@ -46,7 +55,9 @@ class AppLocalizations {
     return this;
   }
 
-  String translate(String key) {
+  String? translate(String key) {
+    if (testing) return key;
+
     if (this.translations.containsKey(key)) {
       return this.translations[key];
     } else {
@@ -60,7 +71,8 @@ class AppLocalizations {
  * Translations delegate
  */
 class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
-  const AppLocalizationsDelegate();
+  final bool testing;
+  const AppLocalizationsDelegate({this.testing = false});
 
   @override
   bool isSupported(Locale locale) => LangCodes.values
@@ -70,9 +82,13 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
 
   @override
   Future<AppLocalizations> load(Locale locale) async {
-    AppLocalizations locals = AppLocalizations(locale: locale);
-
-    return await locals.load();
+    AppLocalizations locals =
+        AppLocalizations(locale: locale, testing: testing);
+    if (testing) {
+      return await locals.loadTest(locale);
+    } else {
+      return await locals.load();
+    }
   }
 
   @override

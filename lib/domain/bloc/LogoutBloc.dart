@@ -1,6 +1,4 @@
 import 'package:flutter_template/common/models/BooleanWrapper.dart';
-import 'package:flutter_template/data/api/ILoginApi.dart';
-import 'package:flutter_template/data/repo/LoginRepositoryImpl.dart';
 import 'package:flutter_template/domain/ErrorCodes.dart';
 import 'package:flutter_template/domain/bloc/core/BaseBloc.dart';
 import 'package:flutter_template/domain/event/LogoutEvent.dart';
@@ -10,11 +8,9 @@ import 'package:flutter_template/domain/repo/ILoginRepository.dart';
  * BLoC used to perform logout operation
  */
 class LogoutBloc extends BaseBloc<LogoutEvent, BooleanWrapper> {
-  ILoginRepository _repo;
+  late ILoginRepository _repo;
 
-  LogoutBloc(ILoginApi api) : super() {
-    this._repo = LoginRepositoryImpl(api: api);
-  }
+  LogoutBloc(this._repo) : super();
 
   @override
   Future<BooleanWrapper> processEvent(LogoutEvent event) async {

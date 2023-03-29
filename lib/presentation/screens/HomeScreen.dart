@@ -8,7 +8,7 @@ import 'package:flutter_template/presentation/widgets/factory/WidgetFactory.dart
  */
 class HomeScreen extends BaseStatelessScreen {
 
-  const HomeScreen({String title = "", Key key})
+  const HomeScreen({String title = "", Key? key})
       : super(title: title, key: key);
 
   @override
@@ -21,12 +21,12 @@ class HomeScreen extends BaseStatelessScreen {
       },
       child: Center(
           child: Container(
-        child: Text(this.getScreenTitle(context)),
+        child: Text(this.getScreenTitle(context)!),
       )),
     );
   }
 
   @override
-  String getScreenTitle(BuildContext cntxt) =>
-      AppLocalizations.of(cntxt).translate("screen_home");
+  String? getScreenTitle(BuildContext cntxt) =>
+      AppLocalizations.of(cntxt)!.translate("screen_home");
 }

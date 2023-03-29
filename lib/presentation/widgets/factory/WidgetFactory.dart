@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_template/data/repo/LoginRepositoryImpl.dart';
 import 'package:flutter_template/domain/bloc/LogoutBloc.dart';
 import 'package:flutter_template/domain/event/LogoutEvent.dart';
 import 'package:flutter_template/network/fake/FakeLoginApiImpl.dart';
@@ -15,25 +16,25 @@ abstract class WidgetFactory {
         context: context,
         builder: (context) {
           return AlertDialog(
-            title: Text(AppLocalizations.of(context).translate("app_name")),
+            title: Text(AppLocalizations.of(context)!.translate("app_name")!),
             actions: <Widget>[
               ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
                   child: Text(
-                      AppLocalizations.of(context).translate("action_no"))),
+                      AppLocalizations.of(context)!.translate("action_no")!)),
               ElevatedButton(
                   onPressed: () {
                     Navigator.of(context).pop();
 
-                    LogoutBloc(FakeLoginApiImpl())
+                    LogoutBloc(LoginRepositoryImpl(api: FakeLoginApiImpl()))
                         .performOperation(LogoutEvent());
 
                     AppNavigator.toLogin(context);
                   },
                   child: Text(
-                      AppLocalizations.of(context).translate("action_yes")))
+                      AppLocalizations.of(context)!.translate("action_yes")!))
             ],
           );
         });
@@ -41,9 +42,9 @@ abstract class WidgetFactory {
 
   static Widget buildBtn(
       {Color color = AppColors.accent,
-      @required String text,
-      @required Function callback,
-      @required TextStyle style}) {
+      required String text,
+      required Function() callback,
+      required TextStyle style}) {
     return Container(
       width: double.maxFinite,
       child: MaterialButton(

@@ -11,7 +11,7 @@ import 'package:flutter_template/network/response/LogoutResponse.dart';
 class FakeLoginApiImpl implements ILoginApi {
   
   @override
-  Future<LoginResponse> login({String user, String pass}) async {
+  Future<LoginResponse> login({String? user, String? pass}) async {
     return await Future.delayed(Duration(seconds: Random().nextInt(3)))
         .then((val) => LoginResponse(user: FakeModelFactory.buildUser()));
   }

@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_template/domain/event/core/BaseEvent.dart';
 
 /*
@@ -8,8 +7,5 @@ class LoginEvent extends BaseEvent {
   final String user;
   final String pass;
 
-  const LoginEvent({@required this.user, @required this.pass})
-      : assert(user != null),
-        assert(pass != null),
-        super();
+  const LoginEvent({required this.user, required this.pass}) : super();
 }

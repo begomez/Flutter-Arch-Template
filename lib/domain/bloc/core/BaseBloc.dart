@@ -7,7 +7,6 @@ import 'package:flutter_template/data/exception/DataException.dart';
 import 'package:flutter_template/domain/ErrorCodes.dart';
 import 'package:flutter_template/domain/event/core/BaseEvent.dart';
 
-
 /*
  * Superclass for BLoC derived classes
  * 
@@ -17,9 +16,9 @@ import 'package:flutter_template/domain/event/core/BaseEvent.dart';
  * - Output: data model type used as bloc output/result
  */
 abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
-
-  StreamController<ResourceResult<Output>> _controller =
-      StreamController<ResourceResult<Output>>();
+  // ignore: close_sinks
+  final StreamController<ResourceResult<Output>?> _controller =
+      StreamController<ResourceResult<Output>?>();
 
   BaseBloc();
 
@@ -29,16 +28,15 @@ abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
    * 
    * @param dto
    */
-  void performOperation(Input event) async {
+  Future<void> performOperation(Input event) async {
     var result;
     try {
-      final data = await this.processEvent(event);
+      final Output data = await this.processEvent(event);
 
       result = this.buildResult(data: data);
-
-    } on DataException catch (de) {
+    } on DataException {
       result = this.buildResult(data: null, errorCode: ErrorCodes.DATA_ERROR);
-    } on Exception catch (e) {
+    } on Exception {
       result = this.buildResult(data: null, errorCode: this.getErrorCode());
     } finally {
       this.processResult(result);
@@ -66,9 +64,9 @@ abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
    * 
    * @param result
    */
-  void processResult(ResourceResult result) {
+  void processResult(ResourceResult? result) {
     if (!this._controller.isClosed) {
-      this.input.add(result);
+      this.input.add(result as ResourceResult<Output>?);
     }
   }
 
@@ -89,10 +87,11 @@ abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
    * @param data Data returned by the operation performed in the bloc
    * @param errorCode Possible error code launched when performing the operation
    */
-  ResourceResult<Output> buildResult({Output data, int errorCode = ErrorCodes.INVALID}) {
-
-    ErrorModel err = (errorCode >= 0)? ErrorModel(code: errorCode) : null;
-    ResourceStatus status = (data != null)? ResourceStatus.SUCCESS : ResourceStatus.ERROR;
+  ResourceResult<Output> buildResult(
+      {Output? data, int errorCode = ErrorCodes.INVALID}) {
+    ErrorModel? err = (errorCode >= 0) ? ErrorModel(code: errorCode) : null;
+    ResourceStatus status =
+        (data != null) ? ResourceStatus.SUCCESS : ResourceStatus.ERROR;
 
     return ResourceResult<Output>(data: data, error: err, status: status);
   }
@@ -100,10 +99,10 @@ abstract class BaseBloc<Input extends BaseEvent, Output extends BaseModel> {
   /*
    * Stream accessor
    */
-  Stream<ResourceResult<Output>> get output => this._controller.stream;
+  Stream<ResourceResult<Output>?> get output => this._controller.stream;
 
   /*
    * Sink accessor
    */
-  StreamSink<ResourceResult<Output>> get input => this._controller.sink;
+  StreamSink<ResourceResult<Output>?> get input => this._controller.sink;
 }

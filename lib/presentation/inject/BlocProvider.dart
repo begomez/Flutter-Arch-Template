@@ -8,17 +8,16 @@ import 'package:flutter_template/domain/bloc/core/BaseBloc.dart';
  *
  * - TargetBloc: data type for the BLoC object we want to inject in the tree
  */
-class BlocProvider<TargetBloc extends BaseBloc> extends StatefulWidget {
+class BlocProvider<TargetBloc extends BaseBloc?> extends StatefulWidget {
   final Widget child;
   final TargetBloc bloc;
 
-  const BlocProvider({@required this.child, @required this.bloc, Key key})
-      : assert(child != null),
-        assert(bloc != null),
-        super(key: key);
+  const BlocProvider({required this.child, required this.bloc, Key? key})
+      : super(key: key);
 
   static TargetBloc of<TargetBloc extends BaseBloc>(BuildContext cntxt) {
-    final candidate = cntxt.findAncestorWidgetOfExactType<BlocProvider<TargetBloc>>();
+    final candidate =
+        cntxt.findAncestorWidgetOfExactType<BlocProvider<TargetBloc>>()!;
 
     return candidate.bloc;
   }
@@ -40,7 +39,7 @@ class _BlocProviderState extends State<BlocProvider> {
 
   @override
   void dispose() {
-    this.widget.bloc.dispose();
+    this.widget.bloc?.dispose();
 
     super.dispose();
   }

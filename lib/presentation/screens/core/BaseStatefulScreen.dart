@@ -7,7 +7,7 @@ import 'package:flutter_template/presentation/screens/core/ScreenMixin.dart';
 abstract class BaseStatefulScreen extends StatefulWidget {
   final String title;
 
-  const BaseStatefulScreen({this.title = "", Key key}) : super(key: key);
+  const BaseStatefulScreen({this.title = "", Key? key}) : super(key: key);
 }
 
 /*

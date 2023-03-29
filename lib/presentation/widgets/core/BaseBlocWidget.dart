@@ -14,7 +14,7 @@ import 'package:flutter_template/presentation/widgets/convenient/AppLoadingWidge
  */
 abstract class BaseBlocWidget<TargetBloc extends BaseBloc>
     extends BaseStatefulWidget {
-  const BaseBlocWidget({Key key}) : super(key: key);
+  const BaseBlocWidget({Key? key}) : super(key: key);
 
   @override
   BaseBlocWidgetState createState();
@@ -69,7 +69,7 @@ abstract class BaseBlocWidgetState<
       );
 
   @override
-  Widget buildError(BuildContext cntxt, ErrorModel err) {
+  Widget buildError(BuildContext cntxt, ErrorModel? err) {
     return AppErrorWidget();
   }
 

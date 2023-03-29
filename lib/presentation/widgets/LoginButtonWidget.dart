@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_template/common/models/UserSessionModel.dart';
+import 'package:flutter_template/data/repo/LoginRepositoryImpl.dart';
 import 'package:flutter_template/domain/bloc/LoginBloc.dart';
 import 'package:flutter_template/domain/event/LoginEvent.dart';
 import 'package:flutter_template/network/fake/FakeLoginApiImpl.dart';
@@ -14,23 +15,19 @@ import 'package:flutter_template/presentation/widgets/factory/WidgetFactory.dart
  * Widget that performs login using credentials
  */
 class LoginButtonWidget extends BaseBlocWidget<LoginBloc> {
-  const LoginButtonWidget({Key key}) : super(key: key);
+  const LoginButtonWidget({Key? key}) : super(key: key);
 
   @override
-  _LoginButtonWidgetState createState() => _LoginButtonWidgetState();
+  LoginButtonWidgetState createState() => LoginButtonWidgetState();
 }
 
 /*
  * Companion state class
  */
-class _LoginButtonWidgetState
-    extends BaseBlocWidgetState<
-        LoginButtonWidget,
-        LoginBloc,
-        LoginEvent,
-        UserSessionModel> {
-
-  _LoginButtonWidgetState() : super();
+@visibleForTesting
+class LoginButtonWidgetState extends BaseBlocWidgetState<LoginButtonWidget,
+    LoginBloc, LoginEvent, UserSessionModel> {
+  LoginButtonWidgetState() : super();
 
   @override
   LoginEvent getEvent() {
@@ -39,7 +36,7 @@ class _LoginButtonWidgetState
 
   @override
   LoginBloc getBlocInstance() {
-    return LoginBloc(FakeLoginApiImpl());
+    return LoginBloc(LoginRepositoryImpl(api: FakeLoginApiImpl()));
   }
 
   @override
@@ -49,7 +46,7 @@ class _LoginButtonWidgetState
   Widget buildInitial(BuildContext cntxt) => this._buildBtn(cntxt);
 
   @override
-  Widget buildSuccess(BuildContext cntxt, UserSessionModel user) {
+  Widget buildSuccess(BuildContext cntxt, UserSessionModel? user) {
     this._navigateToHome(cntxt);
 
     return this._buildBtn(cntxt);
@@ -65,7 +62,7 @@ class _LoginButtonWidgetState
     return WidgetFactory.buildBtn(
         color: AppColors.accent,
         style: AppStyles.action,
-        text: AppLocalizations.of(cntxt).translate("action_login"),
+        text: AppLocalizations.of(cntxt)!.translate("action_login")!,
         callback: () async {
           this.call();
         });

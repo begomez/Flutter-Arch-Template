@@ -31,12 +31,12 @@ abstract class AppStyles {
       );
 
   static TextTheme get appThemeText =>
-      TextTheme(headline6: title, subtitle2: subtitle, bodyText2: body);
+      TextTheme(titleLarge: title, titleSmall: subtitle, bodyMedium: body);
 
   static ThemeData get appTheme => ThemeData(
       primaryColor: AppColors.primary,
       primaryColorDark: AppColors.primaryDark,
-      accentColor: AppColors.accent,
+      //accentColor: AppColors.accent,
       fontFamily: "Roboto",
       textTheme: appThemeText);
 }

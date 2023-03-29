@@ -53,7 +53,7 @@ class LoginButtonWidgetState extends BaseBlocWidgetState<LoginButtonWidget,
   }
 
   void _navigateToHome(BuildContext cntxt) {
-    WidgetsBinding.instance!.addPostFrameCallback((timeStamp) async {
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) async {
       await AppNavigator.toHome(cntxt);
     });
   }

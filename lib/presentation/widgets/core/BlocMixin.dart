@@ -1,3 +1,5 @@
+// ignore_for_file: unused_field
+
 import 'package:flutter/material.dart';
 import 'package:flutter_template/common/models/ErrorModel.dart';
 import 'package:flutter_template/common/models/core/BaseModel.dart';

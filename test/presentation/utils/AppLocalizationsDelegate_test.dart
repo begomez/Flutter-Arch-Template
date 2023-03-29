@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_template/presentation/utils/AppLocalizations.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -6,11 +8,11 @@ import 'package:mocktail/mocktail.dart';
 class MockAppLocalizations extends Mock implements AppLocalizations {}
 
 void main() {
-  late AppLocalizations loc;
+  late AppLocalizations mockLoc;
   late AppLocalizationsDelegate delegate;
 
   setUp(() {
-    loc = MockAppLocalizations();
+    mockLoc = MockAppLocalizations();
     delegate = AppLocalizationsDelegate();
   });
 

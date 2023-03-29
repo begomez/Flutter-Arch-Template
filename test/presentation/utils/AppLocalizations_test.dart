@@ -7,15 +7,15 @@ class MockAppLocalizationsDelegate extends Mock
     implements AppLocalizationsDelegate {}
 
 void main() {
-  late AppLocalizationsDelegate delegate;
+  late AppLocalizationsDelegate mockDelegate;
   late AppLocalizations locale;
 
   setUp(() {
-    delegate = MockAppLocalizationsDelegate();
+    mockDelegate = MockAppLocalizationsDelegate();
     locale = AppLocalizations(
         locale: Locale("en"),
         translations: {"someKey": "some value for someKey"},
-        delegate: delegate);
+        delegate: mockDelegate);
   });
 
   test('When translating then value is returned if key exists', () {

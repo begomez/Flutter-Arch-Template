@@ -12,7 +12,7 @@ class MockNavigatorObserver extends Mock implements NavigatorObserver {}
 class FakeRoute<T> extends Fake implements Route<T> {}
 
 void main() {
-  late NavigatorObserver observer = MockNavigatorObserver();
+  late NavigatorObserver mockObserver = MockNavigatorObserver();
 
   setUpAll(() {
     registerFallbackValue(FakeRoute());
@@ -30,7 +30,7 @@ void main() {
     await tester.pumpWidget(MaterialApp(
       home: SplashScreen(),
       locale: Locale('en'),
-      navigatorObservers: [observer],
+      navigatorObservers: [mockObserver],
       routes: {
         Routes.splash: (cntxt) => SplashScreen(title: ""),
         Routes.login: (cntxt) => LoginScreen(title: ""),
@@ -44,6 +44,6 @@ void main() {
     ));
     await tester.pumpAndSettle(const Duration(seconds: 5));
 
-    verify(() => observer.didPush(any(), any()));
+    verify(() => mockObserver.didPush(any(), any()));
   });
 }

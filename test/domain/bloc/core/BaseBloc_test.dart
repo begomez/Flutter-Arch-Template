@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter_template/common/models/ErrorModel.dart';
 import 'package:flutter_template/common/models/core/BaseModel.dart';
 import 'package:flutter_template/common/models/result/ResourceResult.dart';
@@ -22,14 +24,14 @@ class FakeBlocThrowingException extends BaseBloc<BaseEvent, BaseModel> {
 }
 
 void main() {
-  late BaseEvent event;
-  late BaseModel model;
+  late BaseEvent fakeEvent;
+  late BaseModel fakeModel;
   late FakeBloc bloc;
   late FakeBlocThrowingException blocThrowing;
 
   setUp(() {
-    event = BaseEvent();
-    model = BaseModel();
+    fakeEvent = BaseEvent();
+    fakeModel = BaseModel();
     bloc = FakeBloc();
     blocThrowing = FakeBlocThrowingException();
 
@@ -43,13 +45,13 @@ void main() {
   });
 
   test('When processing event then state is returned', () async {
-    expectLater(await bloc.processEvent(event), isA<BaseModel>());
+    expectLater(await bloc.processEvent(fakeEvent), isA<BaseModel>());
   });
 
   test('When performing operation then input is managed', () async {
     final expected = ResourceResult(
-        data: model, error: null, status: ResourceStatus.SUCCESS);
-    await bloc.performOperation(event);
+        data: fakeModel, error: null, status: ResourceStatus.SUCCESS);
+    await bloc.performOperation(fakeEvent);
     expect(await bloc.output.isEmpty, false);
   });
 
@@ -71,8 +73,8 @@ void main() {
   });
 
   test('When building result with data then data is wrapped', () async {
-    final expected = ResourceResult(data: model);
-    final actual = bloc.buildResult(data: model);
+    final expected = ResourceResult(data: fakeModel);
+    final actual = bloc.buildResult(data: fakeModel);
 
     assert(actual.data != null);
     assert(actual.status == ResourceStatus.SUCCESS);

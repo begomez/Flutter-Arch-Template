@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 //import 'package:flutter_localizations/flutter_localizations.dart';
 //import 'package:flutter_template/presentation/navigation/AppNavigator.dart';
@@ -12,16 +14,16 @@ class MockBuildContext extends Mock implements BuildContext {}
 class FakeRoute<T> extends Fake implements Route<T> {}
 
 void main() {
-  late BuildContext context;
-  late NavigatorObserver observer;
+  late BuildContext mockContext;
+  late NavigatorObserver mockObserver;
 
   setUpAll(() {
     registerFallbackValue(FakeRoute);
   });
 
   setUp(() {
-    context = MockBuildContext();
-    observer = MockNavigatorObserver();
+    mockContext = MockBuildContext();
+    mockObserver = MockNavigatorObserver();
   });
 /*
   testWidgets('AppNavigator ...', (tester) async {

@@ -9,26 +9,28 @@ import 'package:mocktail/mocktail.dart';
 class MockLoginRepository extends Mock implements ILoginRepository {}
 
 void main() {
-  late ILoginRepository repo;
+  late ILoginRepository mockRepo;
   late LoginBloc bloc;
 
   setUp(() {
-    repo = MockLoginRepository();
-    bloc = LoginBloc(repo);
+    mockRepo = MockLoginRepository();
+    bloc = LoginBloc(mockRepo);
   });
 
   test('When processing login event then user is returned', () async {
     final expected = FakeModelFactory.buildUser();
     const LoginEvent event = LoginEvent(user: "user", pass: "pass");
 
-    when(() => repo.login(user: any(named: "user"), pass: any(named: "pass")))
+    when(() =>
+            mockRepo.login(user: any(named: "user"), pass: any(named: "pass")))
         .thenAnswer((_) async => expected);
 
     final result = await bloc.processEvent(event);
 
     expect(result.name, expected.name);
 
-    verify(() => repo.login(user: any(named: "user"), pass: any(named: "pass")))
+    verify(() =>
+            mockRepo.login(user: any(named: "user"), pass: any(named: "pass")))
         .called(1);
   });
 
